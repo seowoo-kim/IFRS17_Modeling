@@ -1,24 +1,24 @@
-SET TIMING ON;
 
---º¸Çè »óÇ°ÀÇ ci´ãº¸(°¢Á¾ 13´ë ¾Ï, µÎ¹øÂ° ¾Ï¹ß»ý·ü µî)ÀÇ À§Çè·üÀ» ±âÃÊÀÚ·á(¼Ò½ºÅ×ÀÌºí 1,2)¸¦ ÀÌ¿ëÇÏ¿© »ý¼ºÇÏ±â À§ÇÑ ÀÛ¾÷.
+
+--ë³´í—˜ ìƒí’ˆì˜ cië‹´ë³´(ê°ì¢… 13ëŒ€ ì•”, ë‘ë²ˆì§¸ ì•”ë°œìƒë¥  ë“±)ì˜ ìœ„í—˜ë¥ ì„ ê¸°ì´ˆìžë£Œ(ì†ŒìŠ¤í…Œì´ë¸” 1,2)ë¥¼ ì´ìš©í•˜ì—¬ ìƒì„±í•˜ê¸° ìœ„í•œ ìž‘ì—….
 
 SELECT * FROM MIG.FND_RKRT_INF WHERE LAST_HIS_YN ='1' AND DEL_YN ='0';
---RISK_RATE   --SOURCE2, »ç¿ë´ë»ó¸¸ ÃÖ½Å¿©ºÎ¿Í »ç¿ëºÒ°¡¿©ºÎ µÎ°³ÀÇ flag·Î ±¸ºÐµÇ´Â Å×ÀÌºí
+--RISK_RATE   --SOURCE2, ì‚¬ìš©ëŒ€ìƒë§Œ ìµœì‹ ì—¬ë¶€ì™€ ì‚¬ìš©ë¶ˆê°€ì—¬ë¶€ ë‘ê°œì˜ flagë¡œ êµ¬ë¶„ë˜ëŠ” í…Œì´ë¸”
 SELECT * FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0';
 --Gen_CI_Rate   --SOURCE1
 SELECT * FROM CF_SIMU.CI_BFRT_INF;
 --CI_Ben_Rate    TARGET
---RISK RATE TABLE¿¡ CLO_YYMM(¸¶°¨³â¿ù)ÀÌ ¾øÀ½. ÁÖÀÇÇØ¾ßÇÔ. ½ÅÈ¸°èÀû¿ëºÎÅÍ °á»ê´Ü°è¿¡ ±â»ý¼º ´ãº¸À²ÀÇ ·Î±×¸¦ °¡Áö°í ÀÖ¾î¾ß Åë°èÁ¤º¸Â÷ÀÌ³ª °¡Á¤Â÷¸¦ ¹Ý¿µÇÒ ¼ö ÀÖÀ¸¹Ç·Î ÆÄÆ¼¼Å´×°ÇÀÇÇÊ¿ä.=> ¸¶°¨³â¿ù ÆÄÆ¼¼Å´× Ãß°¡ÇÔ.
+--RISK RATE TABLEì— CLO_YYMM(ë§ˆê°ë…„ì›”)ì´ ì—†ìŒ. ì£¼ì˜í•´ì•¼í•¨. ì‹ íšŒê³„ì ìš©ë¶€í„° ê²°ì‚°ë‹¨ê³„ì— ê¸°ìƒì„± ë‹´ë³´ìœ¨ì˜ ë¡œê·¸ë¥¼ ê°€ì§€ê³  ìžˆì–´ì•¼ í†µê³„ì •ë³´ì°¨ì´ë‚˜ ê°€ì •ì°¨ë¥¼ ë°˜ì˜í•  ìˆ˜ ìžˆìœ¼ë¯€ë¡œ íŒŒí‹°ì…”ë‹ê±´ì˜í•„ìš”.=> ë§ˆê°ë…„ì›” íŒŒí‹°ì…”ë‹ ì¶”ê°€í•¨.
 
 
---°¢CI ´ãº¸ÄÚµå º°·Î °èÃþ È®ÀÎÇÏ±â
---CI´ãº¸À²Àº ÀÏ¹Ý À§Çè·ü¸¸ÀÇ Á¶ÇÕÀÌ ¾Æ´Ï¶ó ±â»ý¼º CI´ãº¸¸¦ ÀçÂüÁ¶ÇÏ´Â Àç±ÍÁ¤º¸ÀÓ. ±×¸®°í ±× Æ¯À¯ÀÇ Á¤º¸°ü¸®¾î·Á¿ò(°è»ê½Ä ¸Å¿ì º¹Àâ, ±â°£°èÁ¤º¸ ¿À·ù ÀæÀ½, °è¸®»ç¿ëÀÚ Âø¿À µî)À¸·Î Á¤ÇÕ¼º °ü¸® ¹Ýµå½Ã ÇÒ°Í
---Æ¯È÷ CI ´ãº¸À²ÀÇ ¼Ò½ºÅ×ÀÌºíµéÀº ¾Û¿¡¼­ÀÇ È£Ãâ°ú »ç¿ëÀÚ ÀÔ·Â ÃÖÀûÈ­¸¦ À§ÇØ Á¤±ÔÈ­¿Í µ¥ÀÌÅÍÁ¤ÇÕ¼º È®ÀÎÀ» À§ÇÑ Å×ÀÌºí±¸Á¶°¡ ¾Æ´Ô. º°µµÀÇ µ¥ÀÌÅÍÁ¤ÇÕ¼º Äõ¸® ÀÛ¼ºÇÒ°Í.
---ÇÏ³ªÀÇ ´ãº¸ÄÚµå(output´ë»ó)°¡ ¿©·¯°³ÀÇ À§Çè·üÄÚµå1~13¹ø(RKRT_1_ID~RKRT_13_ID) ÄÃ·³¿¡ ÀÖ´Â °ªÀ» ÂüÁ¶ÇÏ´Âµ¥(ÂüÁ¶°ªÀÌ ¾ðÁ¦³ª 13°³ ÄÃ·³¸ðµÎÃ¤¿öÁ®ÀÖÁö ¾ÊÀ¸¹Ç·Î ÁÖÀÇ), ÀÌ¶§ °¢ À§Çè·üÄÚµå°¡ ÀÌ¹Ì ±â»ý¼ºµÇ¾î ÀÖ´Â ´ãº¸ÄÚµå(output´ë»ó)¸¦ ÀçÂüÁ¶ÇÏ¿© Àç±ÍÀû °ü°è°¡ ÀÖÀ½.
---¾Æ¹«°Íµµ ÂüÁ¶ÇÏÁö ¾Ê°í ´ãº¸ÄÚµå°¡ ¾Æ´Ñ ±âÃÊµ¥ÀÌÅÍ¸¸À» »ç¿ëÇÏ´Â ´ë»óÀº LV1, ±×¸®°í ÂüÁ¶ÇÏ´Â À§Çè·üÄÚµåÁß °¡Àå ³ôÀºLV + 1ÀÌ ÇØ´ç ´ãº¸ÄÚµåÀÇ LV(°èÃþ)ÀÌ µÊ.
---ex) ´ãº¸ÄÚµå°¡ ÂüÁ¶ÇÏ´Â À§Çè·üÄÚµåÀÇ ·¹º§µéÀÌ1,3, È¤Àº ´ãº¸ÄÚµå°¡¾Æ´Ñ ¼Ò½ºµ¥ÀÌÅÍµé(ÆíÀÇ»ólv0)ÀÌ¶ó¸é ÀÌ¶§ °¡Àå ³ôÀº ÂüÁ¶ °èÃþÀÌ 3ÀÌ¶ó¸é ÇØ´ç ´ãº¸ÄÚµå´Â LV4°¡ µÊ.
+--ê°CI ë‹´ë³´ì½”ë“œ ë³„ë¡œ ê³„ì¸µ í™•ì¸í•˜ê¸°
+--CIë‹´ë³´ìœ¨ì€ ì¼ë°˜ ìœ„í—˜ë¥ ë§Œì˜ ì¡°í•©ì´ ì•„ë‹ˆë¼ ê¸°ìƒì„± CIë‹´ë³´ë¥¼ ìž¬ì°¸ì¡°í•˜ëŠ” ìž¬ê·€ì •ë³´ìž„. ê·¸ë¦¬ê³  ê·¸ íŠ¹ìœ ì˜ ì •ë³´ê´€ë¦¬ì–´ë ¤ì›€(ê³„ì‚°ì‹ ë§¤ìš° ë³µìž¡, ê¸°ê°„ê³„ì •ë³´ ì˜¤ë¥˜ ìž¦ìŒ, ê³„ë¦¬ì‚¬ìš©ìž ì°©ì˜¤ ë“±)ìœ¼ë¡œ ì •í•©ì„± ê´€ë¦¬ ë°˜ë“œì‹œ í• ê²ƒ
+--íŠ¹ížˆ CI ë‹´ë³´ìœ¨ì˜ ì†ŒìŠ¤í…Œì´ë¸”ë“¤ì€ ì•±ì—ì„œì˜ í˜¸ì¶œê³¼ ì‚¬ìš©ìž ìž…ë ¥ ìµœì í™”ë¥¼ ìœ„í•´ ì •ê·œí™”ì™€ ë°ì´í„°ì •í•©ì„± í™•ì¸ì„ ìœ„í•œ í…Œì´ë¸”êµ¬ì¡°ê°€ ì•„ë‹˜. ë³„ë„ì˜ ë°ì´í„°ì •í•©ì„± ì¿¼ë¦¬ ìž‘ì„±í• ê²ƒ.
+--í•˜ë‚˜ì˜ ë‹´ë³´ì½”ë“œ(outputëŒ€ìƒ)ê°€ ì—¬ëŸ¬ê°œì˜ ìœ„í—˜ë¥ ì½”ë“œ1~13ë²ˆ(RKRT_1_ID~RKRT_13_ID) ì»¬ëŸ¼ì— ìžˆëŠ” ê°’ì„ ì°¸ì¡°í•˜ëŠ”ë°(ì°¸ì¡°ê°’ì´ ì–¸ì œë‚˜ 13ê°œ ì»¬ëŸ¼ëª¨ë‘ì±„ì›Œì ¸ìžˆì§€ ì•Šìœ¼ë¯€ë¡œ ì£¼ì˜), ì´ë•Œ ê° ìœ„í—˜ë¥ ì½”ë“œê°€ ì´ë¯¸ ê¸°ìƒì„±ë˜ì–´ ìžˆëŠ” ë‹´ë³´ì½”ë“œ(outputëŒ€ìƒ)ë¥¼ ìž¬ì°¸ì¡°í•˜ì—¬ ìž¬ê·€ì  ê´€ê³„ê°€ ìžˆìŒ.
+--ì•„ë¬´ê²ƒë„ ì°¸ì¡°í•˜ì§€ ì•Šê³  ë‹´ë³´ì½”ë“œê°€ ì•„ë‹Œ ê¸°ì´ˆë°ì´í„°ë§Œì„ ì‚¬ìš©í•˜ëŠ” ëŒ€ìƒì€ LV1, ê·¸ë¦¬ê³  ì°¸ì¡°í•˜ëŠ” ìœ„í—˜ë¥ ì½”ë“œì¤‘ ê°€ìž¥ ë†’ì€LV + 1ì´ í•´ë‹¹ ë‹´ë³´ì½”ë“œì˜ LV(ê³„ì¸µ)ì´ ë¨.
+--ex) ë‹´ë³´ì½”ë“œê°€ ì°¸ì¡°í•˜ëŠ” ìœ„í—˜ë¥ ì½”ë“œì˜ ë ˆë²¨ë“¤ì´1,3, í˜¹ì€ ë‹´ë³´ì½”ë“œê°€ì•„ë‹Œ ì†ŒìŠ¤ë°ì´í„°ë“¤(íŽ¸ì˜ìƒlv0)ì´ë¼ë©´ ì´ë•Œ ê°€ìž¥ ë†’ì€ ì°¸ì¡° ê³„ì¸µì´ 3ì´ë¼ë©´ í•´ë‹¹ ë‹´ë³´ì½”ë“œëŠ” LV4ê°€ ë¨.
 
---¾Æ·¡ Äõ¸®·Î »ç¿ëÀÚ°¡ ÀÇµµÇÑ´ë·Î °¢ °èÃþº° ´ãº¸ÄÚµå°¡ ¸Â°Ô ÀÔ·ÂµÇ¾îÀÖ´ÂÁö È®ÀÎ.
+--ì•„ëž˜ ì¿¼ë¦¬ë¡œ ì‚¬ìš©ìžê°€ ì˜ë„í•œëŒ€ë¡œ ê° ê³„ì¸µë³„ ë‹´ë³´ì½”ë“œê°€ ë§žê²Œ ìž…ë ¥ë˜ì–´ìžˆëŠ”ì§€ í™•ì¸.
 SELECT MAX(LENGTH(PATH) - LENGTH(REPLACE(PATH, '/'))) AS LV, IFRS_CLM_ID
 FROM 
     (SELECT SYS_CONNECT_BY_PATH(IFRS_CLM_ID, '/') AS PATH, IFRS_CLM_ID, RKRT_ID 
@@ -36,22 +36,22 @@ GROUP BY IFRS_CLM_ID ORDER BY 1,2;
 
 
 
---°¡Àå ÃÖÇÏ°èÃþ°ú ±× À§ÀÇ °èÃþºÎÅÍ Á¶ÀÎ´ë»óÀÌ ´Þ¶óÁö¹Ç·Î(°èÃþ1Àº Àç±ÍÀûÀÌÁö ¾ÊÀ¸³ª °èÃþ2ºÎÅÍ´Â °èÃþ1°á°ú°ªÀ» ½º½º·Î ÂüÁ¶ÇØ¾ßÇÏ¹Ç·Î LV2ºÎÅÍ´Â Àç±Í°ü°èÀÖÀ½) Äõ¸®¸¦ µÎ°¡Áö·Î ±¸ºÐÇÏ¿© °¡Áö°í ÀÖ¾î¾ßÇÔ. ±×¸®°í 2ÀÌ»óÀÇ »óÀ§°èÃþ ·çÇÁ¸¦ ¾Û´Ü¿¡¼­ ÀÛ¼ºÇÏµµ·Ï ÇÔ.
---ÀÌÀü ÀÛ¾÷¹æ½ÄÀÌ ¾îÇÃ¸®ÄÉÀÌ¼Ç¿¡¼­ »ç¿ëÇÏ´Â SQLITEÀÇ Æ¯À¯±â´ÉÀ» »ç¿ëÇÏ¿´À¸³ª ORACLE¿¡¼­ Áö¿ø ºÒ°¡, µû¶ó¼­ XML QUERYÀÌ¿ëÇÔ.
---°è»ê½ÄÀ» ´ã°í ÀÖ´Â RKRT_CALFM_RMK(ÄÃ·³ °ª ¿¹½Ã: Q1+Q2/2-(1-Q3*Q4)) ÄÃ·³³»´Â Q1(1¹øÀ§Çè·ü)~ Q13(13¹øÀ§Çè·ü)À»ÀÌ¿ëÇÑ °è»ê½ÄÀ» Ç¥ÇöÇÏ°í ÀÖÀ¸¹Ç·Î xmlÇ¥Çö½ÄÀ¸·Î °¢°¢ÀÇ ¸ÊÇÎµÈ °ªÀ» ³Ö¾î¼­ °è»ê°ªÀ» ¹ÝÈ¯¹Þ¾Æ INSERTÇØ¾ßÇÔ.
---°¢ À§Çè·ü Æ¯À¯ÀÇ(¿©·¯¾Ï¹ß»ý·üÀÇ ÃÖ´ë¿¬·É, Åë°è°¡ÀÖ´Â ¿¬·ÉÀÌ ´Ù¸§) ÃÖ´ë±â°£ÀÌ ÀÖÀ¸³ª ´Ù¸¥ À§Çè·ü¿¡ °ªÀÌ ÀÖ´Ù¸é °è»êÀ» ÇØ¾ßÇÏ¹Ç·Î  ÇÁ·ÎÁ§¼Ç±â°£ ´©¶ô¾øµµ·Ï ÇÒ°Í.
---Á¤±ÔÈ­µÇ¾îÀÖÁö ¾Ê¾Æ °¢°¢ÀÇ CACL_TYP_COD(CI´ãº¸»êÃâ¸ñÀû)ÄÃ·³ °ª Pri, CF, Nº°·Î °è»êÇØ³»¾ßÇÏ´Â ¹æ½Ä°ú(ºÎ´ãº¸±â°£ Àû¿ë¿©ºÎ µî) 3Â÷¿ø±â°£Àû¿ë¹æ½ÄÀÌ ´Ù¸£¹Ç·Î ÁÖÀÇ°¡ ÇÊ¿äÇÔ.
---Ä«Æ¼Àü°öÀ¸·Î °­Á¦·Î ±â°£À» ´Ã·Á¼­ À§ÀÇ °è»ê¹æ½Ä¿¡ ¸ÂÃç¼­ °ªÀ» »ý¼ºÇØÁÖ°í, Á¶°Ç¿¡ ¸ÂÁö ¾Ê´Â ·¹ÄÚµå´Â ÇÊÅÍ¸µÇØ¼­ ÇÊ¿äÇÑ °ª¸¸À» ³Ö´Â °ÍÀÌ Á¤ÇÕ¼º À¯Áö°¡ ÆíÇÒ °ÍÀÌ¶ó ÆÇ´ÜÇÔ.
+--ê°€ìž¥ ìµœí•˜ê³„ì¸µê³¼ ê·¸ ìœ„ì˜ ê³„ì¸µë¶€í„° ì¡°ì¸ëŒ€ìƒì´ ë‹¬ë¼ì§€ë¯€ë¡œ(ê³„ì¸µ1ì€ ìž¬ê·€ì ì´ì§€ ì•Šìœ¼ë‚˜ ê³„ì¸µ2ë¶€í„°ëŠ” ê³„ì¸µ1ê²°ê³¼ê°’ì„ ìŠ¤ìŠ¤ë¡œ ì°¸ì¡°í•´ì•¼í•˜ë¯€ë¡œ LV2ë¶€í„°ëŠ” ìž¬ê·€ê´€ê³„ìžˆìŒ) ì¿¼ë¦¬ë¥¼ ë‘ê°€ì§€ë¡œ êµ¬ë¶„í•˜ì—¬ ê°€ì§€ê³  ìžˆì–´ì•¼í•¨. ê·¸ë¦¬ê³  2ì´ìƒì˜ ìƒìœ„ê³„ì¸µ ë£¨í”„ë¥¼ ì•±ë‹¨ì—ì„œ ìž‘ì„±í•˜ë„ë¡ í•¨.
+--ì´ì „ ìž‘ì—…ë°©ì‹ì´ ì–´í”Œë¦¬ì¼€ì´ì…˜ì—ì„œ ì‚¬ìš©í•˜ëŠ” SQLITEì˜ íŠ¹ìœ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì˜€ìœ¼ë‚˜ ORACLEì—ì„œ ì§€ì› ë¶ˆê°€, ë”°ë¼ì„œ XML QUERYì´ìš©í•¨.
+--ê³„ì‚°ì‹ì„ ë‹´ê³  ìžˆëŠ” RKRT_CALFM_RMK(ì»¬ëŸ¼ ê°’ ì˜ˆì‹œ: Q1+Q2/2-(1-Q3*Q4)) ì»¬ëŸ¼ë‚´ëŠ” Q1(1ë²ˆìœ„í—˜ë¥ )~ Q13(13ë²ˆìœ„í—˜ë¥ )ì„ì´ìš©í•œ ê³„ì‚°ì‹ì„ í‘œí˜„í•˜ê³  ìžˆìœ¼ë¯€ë¡œ xmlí‘œí˜„ì‹ìœ¼ë¡œ ê°ê°ì˜ ë§µí•‘ëœ ê°’ì„ ë„£ì–´ì„œ ê³„ì‚°ê°’ì„ ë°˜í™˜ë°›ì•„ INSERTí•´ì•¼í•¨.
+--ê° ìœ„í—˜ë¥  íŠ¹ìœ ì˜(ì—¬ëŸ¬ì•”ë°œìƒë¥ ì˜ ìµœëŒ€ì—°ë ¹, í†µê³„ê°€ìžˆëŠ” ì—°ë ¹ì´ ë‹¤ë¦„) ìµœëŒ€ê¸°ê°„ì´ ìžˆìœ¼ë‚˜ ë‹¤ë¥¸ ìœ„í—˜ë¥ ì— ê°’ì´ ìžˆë‹¤ë©´ ê³„ì‚°ì„ í•´ì•¼í•˜ë¯€ë¡œ  í”„ë¡œì ì…˜ê¸°ê°„ ëˆ„ë½ì—†ë„ë¡ í• ê²ƒ.
+--ì •ê·œí™”ë˜ì–´ìžˆì§€ ì•Šì•„ ê°ê°ì˜ CACL_TYP_COD(CIë‹´ë³´ì‚°ì¶œëª©ì )ì»¬ëŸ¼ ê°’ Pri, CF, Në³„ë¡œ ê³„ì‚°í•´ë‚´ì•¼í•˜ëŠ” ë°©ì‹ê³¼(ë¶€ë‹´ë³´ê¸°ê°„ ì ìš©ì—¬ë¶€ ë“±) 3ì°¨ì›ê¸°ê°„ì ìš©ë°©ì‹ì´ ë‹¤ë¥´ë¯€ë¡œ ì£¼ì˜ê°€ í•„ìš”í•¨.
+--ì¹´í‹°ì „ê³±ìœ¼ë¡œ ê°•ì œë¡œ ê¸°ê°„ì„ ëŠ˜ë ¤ì„œ ìœ„ì˜ ê³„ì‚°ë°©ì‹ì— ë§žì¶°ì„œ ê°’ì„ ìƒì„±í•´ì£¼ê³ , ì¡°ê±´ì— ë§žì§€ ì•ŠëŠ” ë ˆì½”ë“œëŠ” í•„í„°ë§í•´ì„œ í•„ìš”í•œ ê°’ë§Œì„ ë„£ëŠ” ê²ƒì´ ì •í•©ì„± ìœ ì§€ê°€ íŽ¸í•  ê²ƒì´ë¼ íŒë‹¨í•¨.
 
 ------------------------------------------------------------------------------------------------
---LEVEL 1, ÃÖÇÏ°èÃþÀ» À§ÇÑ Äõ¸®. °ª°ËÁõ ³¡³µÀ½. ´Ù¸¸ °èÃþ 2~ ÀÌ»óÀº ÄÃ·³´ÜÀ§·Î Àâ¾Æ¿Í¼­ ÀÛ¾÷À» ÁøÇàÇØ¾ßÇÔ.
+--LEVEL 1, ìµœí•˜ê³„ì¸µì„ ìœ„í•œ ì¿¼ë¦¬. ê°’ê²€ì¦ ëë‚¬ìŒ. ë‹¤ë§Œ ê³„ì¸µ 2~ ì´ìƒì€ ì»¬ëŸ¼ë‹¨ìœ„ë¡œ ìž¡ì•„ì™€ì„œ ìž‘ì—…ì„ ì§„í–‰í•´ì•¼í•¨.
 ------------------------------------------------------------------------------------------------
 
 --SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 --EXPLAIN PLAN FOR
 
 INSERT /*+ENABLE_PARALLEL_DML PARALLEL(Z 16) OPT_PARAM('_OPTIMIZER_GATHER_STATS_ON_LOAD' 'FALSE') */ 
-INTO CF_SIMU.CI_BFRT_INF Z       --¾Æ·¡¿¡ ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+INTO CF_SIMU.CI_BFRT_INF Z       --ì•„ëž˜ì— ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
 SELECT /*+PARALLEL(A 16)*/ '201812' AS CLO_YYMM, A.IFRS_CLM_ID, A.GNDR_APPT_COD, A.AGE, A.NTRY_AGE, A.YY_LSTH_PPRD, A.CACL_TYP_COD, XMLQUERY(RKRT_CALFM_RMK RETURNING CONTENT).GETNUMBERVAL() AS RKRT_VL 
 FROM 
     (SELECT /*+PARALLEL(A 16)*/
@@ -103,7 +103,7 @@ FROM
                   , RKRT_11_ID 
                   , RKRT_12_ID 
                   , RKRT_13_ID
-            FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST A WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0'   --ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+            FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST A WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0'   --ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
             AND LENGTH(REPLACE(RKRT_1_ID||RKRT_2_ID||RKRT_3_ID||RKRT_4_ID||RKRT_5_ID||RKRT_6_ID||RKRT_7_ID||RKRT_8_ID||RKRT_9_ID||RKRT_10_ID||RKRT_11_ID||RKRT_12_ID||RKRT_13_ID, 'q')) = 
             LENGTH(RKRT_1_ID||RKRT_2_ID||RKRT_3_ID||RKRT_4_ID||RKRT_5_ID||RKRT_6_ID||RKRT_7_ID||RKRT_8_ID||RKRT_9_ID||RKRT_10_ID||RKRT_11_ID||RKRT_12_ID||RKRT_13_ID)
             )B 
@@ -128,13 +128,13 @@ COMMIT;
 
 
 ------------------------------------------------------------------------------------------------
---LEVEL 2~ ¸¦ À§ÇÑ Äõ¸®
+--LEVEL 2~ ë¥¼ ìœ„í•œ ì¿¼ë¦¬
 ------------------------------------------------------------------------------------------------
 --SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 --EXPLAIN PLAN FOR
 
 INSERT /*+ENABLE_PARALLEL_DML PARALLEL(Z 16) OPT_PARAM('_OPTIMIZER_GATHER_STATS_ON_LOAD' 'FALSE') */ 
-INTO CF_SIMU.CI_BFRT_INF Z      --¾Æ·¡¿¡ ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+INTO CF_SIMU.CI_BFRT_INF Z      --ì•„ëž˜ì— ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
 SELECT /*+PARALLEL(A 16)*/ '201812' AS CLO_YYMM, A.IFRS_CLM_ID, A.GNDR_APPT_COD, A.AGE, A.NTRY_AGE, A.YY_LSTH_PPRD, A.CACL_TYP_COD, XMLQUERY(RKRT_CALFM_RMK RETURNING CONTENT).GETNUMBERVAL() AS RKRT_VL 
 FROM 
     (SELECT /*+PARALLEL(A 16)*/
@@ -196,11 +196,11 @@ FROM
                         FROM 
                             (SELECT /*+FULL(A) PARALLEL(A 16) */ IFRS_CLM_ID, RKRT_ID
                             FROM 
-                                (SELECT * FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0') A    --ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+                                (SELECT * FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0') A    --ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
                                 UNPIVOT(RKRT_ID FOR ID_NUM IN(RKRT_1_ID,RKRT_2_ID,RKRT_3_ID,RKRT_4_ID,RKRT_5_ID,RKRT_6_ID,RKRT_7_ID,RKRT_8_ID,RKRT_9_ID,RKRT_10_ID,RKRT_11_ID,RKRT_12_ID,RKRT_13_ID))
                             )
-                        CONNECT BY NOCYCLE PRIOR IFRS_CLM_ID = RKRT_ID) WHERE LV =2) B	--°è»êÇÒ °èÃþ¿¡ ¸ÂÃç LV º¯°æÇØÁà¾ßÇÔ. ·çÇÁÁøÇà.
-                WHERE A.CLO_YYMM ='201812' AND A.LAST_HIS_YN ='1' AND A.DEL_YN ='0' AND A.IFRS_CLM_ID = B.IFRS_CLM_ID   --ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+                        CONNECT BY NOCYCLE PRIOR IFRS_CLM_ID = RKRT_ID) WHERE LV =2) B	--ê³„ì‚°í•  ê³„ì¸µì— ë§žì¶° LV ë³€ê²½í•´ì¤˜ì•¼í•¨. ë£¨í”„ì§„í–‰.
+                WHERE A.CLO_YYMM ='201812' AND A.LAST_HIS_YN ='1' AND A.DEL_YN ='0' AND A.IFRS_CLM_ID = B.IFRS_CLM_ID   --ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
                 )B 
                 , (SELECT /*+FULL(A) PARALLEL(A 16) */ * FROM CF_SIMU.CI_BFRT_INF A) A
             WHERE A.IFRS_CLM_ID IN (B.RKRT_1_ID, B.RKRT_2_ID, B.RKRT_3_ID, B.RKRT_4_ID, B.RKRT_5_ID, B.RKRT_6_ID, B.RKRT_7_ID, B.RKRT_8_ID, B.RKRT_9_ID, RKRT_10_ID, RKRT_11_ID, RKRT_12_ID, RKRT_13_ID)
@@ -244,10 +244,10 @@ FROM
                     FROM 
                         (SELECT /*+FULL(A) PARALLEL(A 16) */ IFRS_CLM_ID, RKRT_ID
                         FROM 
-                            (SELECT * FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0') A    --ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+                            (SELECT * FROM CF_SIMU.IFRS_CI_BFRT_CRT_LST WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0') A    --ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
                             UNPIVOT(RKRT_ID FOR ID_NUM IN(RKRT_1_ID,RKRT_2_ID,RKRT_3_ID,RKRT_4_ID,RKRT_5_ID,RKRT_6_ID,RKRT_7_ID,RKRT_8_ID,RKRT_9_ID,RKRT_10_ID,RKRT_11_ID,RKRT_12_ID,RKRT_13_ID))
                         )
-                    CONNECT BY NOCYCLE PRIOR IFRS_CLM_ID = RKRT_ID) WHERE LV =2) B	--°èÃþÀÔ·ÂÇØ¾ßÇÔ, ÇöÀç´Â 2, ÀÌ°ÍÀ» ÃÖ´ë°èÃþ±îÁö ·çÇÁ½ÃÄÑ¾ßÇÔ
+                    CONNECT BY NOCYCLE PRIOR IFRS_CLM_ID = RKRT_ID) WHERE LV =2) B	--ê³„ì¸µìž…ë ¥í•´ì•¼í•¨, í˜„ìž¬ëŠ” 2, ì´ê²ƒì„ ìµœëŒ€ê³„ì¸µê¹Œì§€ ë£¨í”„ì‹œì¼œì•¼í•¨
                 WHERE A.CLO_YYMM ='201812' AND A.LAST_HIS_YN ='1' AND A.DEL_YN ='0' AND A.IFRS_CLM_ID = B.IFRS_CLM_ID
                 )B 
                 , 
@@ -259,7 +259,7 @@ FROM
                       , B.CACL_TYP_COD 
                 FROM MIG.FND_RKRT_INF A, 
                      (SELECT LEVEL AS LV, CASE WHEN LEVEL = 1 THEN 'N' WHEN LEVEL > 1 AND LEVEL < 5 THEN 'Pri' ELSE 'CF' END AS CACL_TYP_COD FROM DUAL CONNECT BY LEVEL < 41) B 
-                WHERE A.MIG_CLO_YYMM ='201812' AND A.LAST_HIS_YN ='1' AND A.DEL_YN ='0' AND (A.AGE - (CASE WHEN B.CACL_TYP_COD = 'Pri' THEN B.LV - 2 ELSE FLOOR((B.LV - 5)/12) END)) > = 0  --ÀÔ·ÂÇØ¾ßÇÏ´Â ¸¶°¨³â¿ù¿¡ ¸ÂÃç¼­ CLO_YYMM º¯°æÇØÁà¾ßÇÔ. 07.21±âÁØ
+                WHERE A.MIG_CLO_YYMM ='201812' AND A.LAST_HIS_YN ='1' AND A.DEL_YN ='0' AND (A.AGE - (CASE WHEN B.CACL_TYP_COD = 'Pri' THEN B.LV - 2 ELSE FLOOR((B.LV - 5)/12) END)) > = 0  --ìž…ë ¥í•´ì•¼í•˜ëŠ” ë§ˆê°ë…„ì›”ì— ë§žì¶°ì„œ CLO_YYMM ë³€ê²½í•´ì¤˜ì•¼í•¨. 07.21ê¸°ì¤€
                 ) A
             WHERE A.RKRT_COD IN (B.RKRT_1_ID, B.RKRT_2_ID, B.RKRT_3_ID, B.RKRT_4_ID, B.RKRT_5_ID, B.RKRT_6_ID, B.RKRT_7_ID, B.RKRT_8_ID, B.RKRT_9_ID, B.RKRT_10_ID, B.RKRT_11_ID, B.RKRT_12_ID, B.RKRT_13_ID) 
             AND A.AGE < B.IFRS_CI_BFRT_CRT_LAST_AGE_COD 
