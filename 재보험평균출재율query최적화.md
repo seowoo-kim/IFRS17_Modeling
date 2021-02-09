@@ -1,32 +1,32 @@
 ```sql
 
---º¸Çè½ÅÈ¸°èÁ¦µµ ifrs17 ¾÷¹«»ó Àçº¸Çè Æò±Õ ÃâÀçÀ² ÃëÇÕ°úÁ¤Àº ¼¼°¡Áö ºÐ·ù°¡ Á¸ÀçÇÔ.
---ºÐ·ù1 : ¿ø¼öº¸Çè(¿ø¼öº¸ÇèÆ÷Æ®Æú¸®¿À, ¿ø¼öº¸Çèµ¿ÀÏÀ¯Çü±×·ìÄÚµå, ¿ø¼öº¸ÇègocÀ¯Çü±×·ìÄÚµå)°ú Àçº¸Çè(Àçº¸ÇèÆ÷Æ®Æú¸®¿À, Àçº¸Çèµ¿ÀÏÀ¯Çü±×·ìÄÚµå, Àçº¸ÇègocÀ¯Çü±×·ìÄÚµå) ±âÁØÀ» µ¿½ÃÀû¿ëÇÑ ÃâÀç´ÜÀ§ ÃëÇÕ.
---ºÐ·ù2 : Àü»ç´ÜÀ§(¿ø¼öº¸ÇèÀçº¸Çè ±¸ºÐ¾øÀÌ È¸°è³â¿ù°ú È¸°è´Ü°è¸¸±¸ºÐ)ÀÇ ÃëÇÕ.
---ºÐ·ù3 : Àçº¸Çè(Àçº¸ÇèÆ÷Æ®Æú¸®¿À, Àçº¸Çèµ¿ÀÏÀ¯Çü±×·ìÄÚµå, Àçº¸ÇègocÀ¯Çü±×·ìÄÚµå)³»ÀÇ ÃëÇÕ.
+--ë³´í—˜ì‹ íšŒê³„ì œë„ ifrs17 ì—…ë¬´ìƒ ìž¬ë³´í—˜ í‰ê·  ì¶œìž¬ìœ¨ ì·¨í•©ê³¼ì •ì€ ì„¸ê°€ì§€ ë¶„ë¥˜ê°€ ì¡´ìž¬í•¨.
+--ë¶„ë¥˜1 : ì›ìˆ˜ë³´í—˜(ì›ìˆ˜ë³´í—˜í¬íŠ¸í´ë¦¬ì˜¤, ì›ìˆ˜ë³´í—˜ë™ì¼ìœ í˜•ê·¸ë£¹ì½”ë“œ, ì›ìˆ˜ë³´í—˜gocìœ í˜•ê·¸ë£¹ì½”ë“œ)ê³¼ ìž¬ë³´í—˜(ìž¬ë³´í—˜í¬íŠ¸í´ë¦¬ì˜¤, ìž¬ë³´í—˜ë™ì¼ìœ í˜•ê·¸ë£¹ì½”ë“œ, ìž¬ë³´í—˜gocìœ í˜•ê·¸ë£¹ì½”ë“œ) ê¸°ì¤€ì„ ë™ì‹œì ìš©í•œ ì¶œìž¬ë‹¨ìœ„ ì·¨í•©.
+--ë¶„ë¥˜2 : ì „ì‚¬ë‹¨ìœ„(ì›ìˆ˜ë³´í—˜ìž¬ë³´í—˜ êµ¬ë¶„ì—†ì´ íšŒê³„ë…„ì›”ê³¼ íšŒê³„ë‹¨ê³„ë§Œêµ¬ë¶„)ì˜ ì·¨í•©.
+--ë¶„ë¥˜3 : ìž¬ë³´í—˜(ìž¬ë³´í—˜í¬íŠ¸í´ë¦¬ì˜¤, ìž¬ë³´í—˜ë™ì¼ìœ í˜•ê·¸ë£¹ì½”ë“œ, ìž¬ë³´í—˜gocìœ í˜•ê·¸ë£¹ì½”ë“œ)ë‚´ì˜ ì·¨í•©.
 
 
---±âÁ¸ ÀÛ¾÷Àº ¼¼°¡Áö ºÐ·ù°¢°¢ÀÇ ¼¼¹ø full scanÀ¸·Î °¢±â ´Ù¸¥ À¯ÇüºÐ·ùÄÚµå·Î insert°¡ µÇ¾úÀ½.
---¼Ò½ºÅ×ÀÌºíÀÇ Å©±â°¡ ÃÖ¼Ò 5~6000¸¸, ÃÖ´ë 20¾ï°ÇÁ¤µµÀÇ µ¥ÀÌÅÍ·Î, ´ë¿ë·® ÀÛ¾÷ÀÌ ¿À¶óÅ¬¿¢»ç¶óµµ ºÎ´ã½º·¯¿ö ´ÙÀ½ÀÇ ¹®Á¦°¡ ÀÖÀ½.
---¹®Á¦ 1. µ¿ÀÏ ÀÛ¾÷ÀÌ ½ÇÆÐÇÒ¶§µµ ¸¹À½(¶§¶§·Î ¼­¹öÇÁ¸®Â¡À¸·Î ÇØ´ç ÀÛ¾÷ ¸ØÃã ÀÌÈÄ ·Ñ¹éµÊ).
---¹®Á¦ 2. ´Ù¸¥ ÀÛ¾÷¿¡ ¿µÇâÀÌ Å­(cpu Á¡À¯À²ÀÌ ³ô¾Æ db°¡¿ë¼ºÀúÇÏ, undo segment, temptablespaceºÎÁ·À¸·Î ´Ù¸¥ ÀÛ¾÷µé ¸ðµÎ ºñÁ¤»óÁ¾·á, ºñÁ¤»óÁ¾·á½Ã ¹é±×¶ó¿îµå ÇÁ·Î¼¼½º¿¡ ÀÇÇÑ Á¤»óÈ­¿¡ ½Ã°£°É·Á 3½Ã°£Á¤µµ ÀÛ¾÷ºÒ°¡).
---¹®Á¦ 3. ÀÛ¾÷½Ã°£ÀÌ ±æ¾î "°è¸®¸ðµ¨(hpcÈ¯°æ¿¡¼­ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ¸·Î ¿¬»ê)cash flow »êÃâ->dbÃëÇÕ->Àç¹«°á»ê È¸°è¹«ºê¸ÕÆ®" ÁøÇà »ó ¾÷¹« flow°¡ ¸Å²ô·´Áö ¸øÇÔ. ÀÛ¾÷½Ã°£Á¾·á¸¦ ¼­·Î ¸ÂÃß±â ¾î·Á¿ö¼­ ·Î½º Å¸ÀÓÀ¸·Î ÀÛ¾÷ÀÌ Áö¿¬µÊ.
+--ê¸°ì¡´ ìž‘ì—…ì€ ì„¸ê°€ì§€ ë¶„ë¥˜ê°ê°ì˜ ì„¸ë²ˆ full scanìœ¼ë¡œ ê°ê¸° ë‹¤ë¥¸ ìœ í˜•ë¶„ë¥˜ì½”ë“œë¡œ insertê°€ ë˜ì—ˆìŒ.
+--ì†ŒìŠ¤í…Œì´ë¸”ì˜ í¬ê¸°ê°€ ìµœì†Œ 5~6000ë§Œ, ìµœëŒ€ 20ì–µê±´ì •ë„ì˜ ë°ì´í„°ë¡œ, ëŒ€ìš©ëŸ‰ ìž‘ì—…ì´ ì˜¤ë¼í´ì—‘ì‚¬ë¼ë„ ë¶€ë‹´ìŠ¤ëŸ¬ì›Œ ë‹¤ìŒì˜ ë¬¸ì œê°€ ìžˆìŒ.
+--ë¬¸ì œ 1. ë™ì¼ ìž‘ì—…ì´ ì‹¤íŒ¨í• ë•Œë„ ë§ŽìŒ(ë•Œë•Œë¡œ ì„œë²„í”„ë¦¬ì§•ìœ¼ë¡œ í•´ë‹¹ ìž‘ì—… ë©ˆì¶¤ ì´í›„ ë¡¤ë°±ë¨).
+--ë¬¸ì œ 2. ë‹¤ë¥¸ ìž‘ì—…ì— ì˜í–¥ì´ í¼(cpu ì ìœ ìœ¨ì´ ë†’ì•„ dbê°€ìš©ì„±ì €í•˜, undo segment, temptablespaceë¶€ì¡±ìœ¼ë¡œ ë‹¤ë¥¸ ìž‘ì—…ë“¤ ëª¨ë‘ ë¹„ì •ìƒì¢…ë£Œ, ë¹„ì •ìƒì¢…ë£Œì‹œ ë°±ê·¸ë¼ìš´ë“œ í”„ë¡œì„¸ìŠ¤ì— ì˜í•œ ì •ìƒí™”ì— ì‹œê°„ê±¸ë ¤ 3ì‹œê°„ì •ë„ ìž‘ì—…ë¶ˆê°€).
+--ë¬¸ì œ 3. ìž‘ì—…ì‹œê°„ì´ ê¸¸ì–´ "ê³„ë¦¬ëª¨ë¸(hpcí™˜ê²½ì—ì„œ ì• í”Œë¦¬ì¼€ì´ì…˜ìœ¼ë¡œ ì—°ì‚°)cash flow ì‚°ì¶œ->dbì·¨í•©->ìž¬ë¬´ê²°ì‚° íšŒê³„ë¬´ë¸Œë¨¼íŠ¸" ì§„í–‰ ìƒ ì—…ë¬´ flowê°€ ë§¤ë„ëŸ½ì§€ ëª»í•¨. ìž‘ì—…ì‹œê°„ì¢…ë£Œë¥¼ ì„œë¡œ ë§žì¶”ê¸° ì–´ë ¤ì›Œì„œ ë¡œìŠ¤ íƒ€ìž„ìœ¼ë¡œ ìž‘ì—…ì´ ì§€ì—°ë¨.
 
 
 
---##ÃÖÀûÈ­ ÀÌÀü 3°¡Áö ÀÛ¾÷À¸·Î ±¸¼ºµÇ¾î ÀÖÀ½. ¾Æ·¡´Â ¼¼ Äõ¸® ¿øº».
---°¡Àå Áß¿äÇÑ È¸°è¹«ºê¸ÕÆ®ÀÎ 1130(ÃÖÁ¾°á»ê´Ü°è)À» ±âÁØÀ¸·Î ÃÖÀûÈ­ Å×½ºÆ® ÁøÇàÇÔ. 
---±âÁ¸ Äõ¸®°¡ À©µµ¿ì ÇÔ¼ö¸¦ À¯ÁöÇÒ ¼ö¹Û¿¡ ¾ø¾ú´ø ÀÌÀ¯ :
---1. ´Ü¼ø ºÐ·ù±âÁØ 3°¡Áö ¿Ü¿¡µµ ACCT_PYMT_COD(»ç°íÁö±ÞÀ¯ÇüÄÚµå)º°·Î º°µµÀÇ Ã³¸®°¡ ÇÊ¿äÇÏ¿© ´ë»ó ·¹ÄÚµå¸¦ µû·Î Ã³¸®ÇÏ´Â À©µµ¿ì ÇÁ·¹ÀÓ ÆÄÆ¼¼Å´×ÀÌ ÇÊ¿äÇß°í, 
---2. IFRS17°á»êÀÌ ºÐ±â´©Àû°á»êÀÓ¿¡ µû¶ó ÆÄÆ¼¼Å´×µÈ ¿©·¯ È¸°è±âÁØ³â¿ùÀÇ ¹«ºê¸ÕÆ®¸¦ ´Ù½Ã ÀÐ¾î ÀçÃëÇÕÇÏ¸ç ÀÛ¾÷ÀÌ ÇÊ¿äÇß±â ¶§¹®ÀÓ.
+--##ìµœì í™” ì´ì „ 3ê°€ì§€ ìž‘ì—…ìœ¼ë¡œ êµ¬ì„±ë˜ì–´ ìžˆìŒ. ì•„ëž˜ëŠ” ì„¸ ì¿¼ë¦¬ ì›ë³¸.
+--ê°€ìž¥ ì¤‘ìš”í•œ íšŒê³„ë¬´ë¸Œë¨¼íŠ¸ì¸ 1130(ìµœì¢…ê²°ì‚°ë‹¨ê³„)ì„ ê¸°ì¤€ìœ¼ë¡œ ìµœì í™” í…ŒìŠ¤íŠ¸ ì§„í–‰í•¨. 
+--ê¸°ì¡´ ì¿¼ë¦¬ê°€ ìœˆë„ìš° í•¨ìˆ˜ë¥¼ ìœ ì§€í•  ìˆ˜ë°–ì— ì—†ì—ˆë˜ ì´ìœ  :
+--1. ë‹¨ìˆœ ë¶„ë¥˜ê¸°ì¤€ 3ê°€ì§€ ì™¸ì—ë„ ACCT_PYMT_COD(ì‚¬ê³ ì§€ê¸‰ìœ í˜•ì½”ë“œ)ë³„ë¡œ ë³„ë„ì˜ ì²˜ë¦¬ê°€ í•„ìš”í•˜ì—¬ ëŒ€ìƒ ë ˆì½”ë“œë¥¼ ë”°ë¡œ ì²˜ë¦¬í•˜ëŠ” ìœˆë„ìš° í”„ë ˆìž„ íŒŒí‹°ì…”ë‹ì´ í•„ìš”í–ˆê³ , 
+--2. IFRS17ê²°ì‚°ì´ ë¶„ê¸°ëˆ„ì ê²°ì‚°ìž„ì— ë”°ë¼ íŒŒí‹°ì…”ë‹ëœ ì—¬ëŸ¬ íšŒê³„ê¸°ì¤€ë…„ì›”ì˜ ë¬´ë¸Œë¨¼íŠ¸ë¥¼ ë‹¤ì‹œ ì½ì–´ ìž¬ì·¨í•©í•˜ë©° ìž‘ì—…ì´ í•„ìš”í–ˆê¸° ë•Œë¬¸ìž„.
 
 SET TIMING ON;
 
 
---###¼¼ºÐÈ­´ÜÀ§ 1¹ø
+--###ì„¸ë¶„í™”ë‹¨ìœ„ 1ë²ˆ
 --INSERT INTO CF_SIMU.RSUR_AVG_CEDRT
 
-INSERT INTO FMS.RSUR_AVG_CEDRT_TMP	--ÀÌÇÏ INSERT´ë»ó Å×ÀÌºíÀº, Å×½ºÆ® ºÎ´ãÀ» ÁÙÀÌ±â À§ÇØ¼­ pkµî »èÁ¦ÇÑ Å×ÀÌºí¿¡¼­ ÀÓ½Ã·Î ÃëÇÕ È®ÀÎÇØº½.
+INSERT INTO FMS.RSUR_AVG_CEDRT_TMP	--ì´í•˜ INSERTëŒ€ìƒ í…Œì´ë¸”ì€, í…ŒìŠ¤íŠ¸ ë¶€ë‹´ì„ ì¤„ì´ê¸° ìœ„í•´ì„œ pkë“± ì‚­ì œí•œ í…Œì´ë¸”ì—ì„œ ìž„ì‹œë¡œ ì·¨í•© í™•ì¸í•´ë´„.
   SELECT /*+FULL(A) PARALLEL(A 4) */
       A.IFRS_ACTS_YYMM, A.VALU_YYMM, '1' AS AVG_RTO_SECD, A.PRFT_COMS_XC_GRP_COD, A.IFRS_WRK_SECD, A.MVMT_SECD
     , A.RSUR_PF_SECD, A.RSUR_SAME_GRP_TYP_COD, A.RSUR_GOC_TYP_COD, A.DRCTBZ_PF_SECD, A.DRCTBZ_SAME_GRP_TYP_COD, A.DRCTBZ_GOC_TYP_COD, TO_CHAR(ADD_MONTHS(A.VALU_YYMM||'01',1),'YYYYMM') AS PROG_YYMM
@@ -45,7 +45,7 @@ INSERT INTO FMS.RSUR_AVG_CEDRT_TMP	--ÀÌÇÏ INSERT´ë»ó Å×ÀÌºíÀº, Å×½ºÆ® ºÎ´ãÀ» ÁÙÀ
 ;
 COMMIT;
 
---###Àü»ç´ÜÀ§ 2
+--###ì „ì‚¬ë‹¨ìœ„ 2
 --INSERT INTO CF_SIMU.RSUR_AVG_CEDRT
 
 INSERT INTO FMS.RSUR_AVG_CEDRT_TMP
@@ -66,7 +66,7 @@ INSERT INTO FMS.RSUR_AVG_CEDRT_TMP
 ;
 COMMIT;
 
---###Àçº¸¸¸ 3¹ø
+--###ìž¬ë³´ë§Œ 3ë²ˆ
 --INSERT INTO CF_SIMU.RSUR_AVG_CEDRT
 INSERT INTO FMS.RSUR_AVG_CEDRT_TMP
   SELECT /*+FULL(A) PARALLEL(A 4) */
@@ -88,17 +88,17 @@ INSERT INTO FMS.RSUR_AVG_CEDRT_TMP
 ;
 COMMIT;
 
---ÃÑ ¼¼¹øÀÇ Äõ¸® ¼öÇàÀ¸·Î ÀÛ¾÷ Á¾·áÇÔ.
---Æò±Õ ÀÛ¾÷¿Ï¼ö½Ã°£ 1½Ã°£
+--ì´ ì„¸ë²ˆì˜ ì¿¼ë¦¬ ìˆ˜í–‰ìœ¼ë¡œ ìž‘ì—… ì¢…ë£Œí•¨.
+--í‰ê·  ìž‘ì—…ì™„ìˆ˜ì‹œê°„ 1ì‹œê°„
 
 
 
---###ÃÖÀûÈ­ 1Â÷½Ãµµ
---¼¼Äõ¸® °¢°¢¿¡¼­ window functionÀ» ¾²¸é¼­ ¼ÒÆÃÀÌ ÀÖ¾úÁö¸¸ ¿øÄõ¸®·Î ÇÕÄ§. °á°úÀûÀ¸·Î WINDOW SORT OPERATIONÀ» 2¹øÀ¸·Î ÁÙÀÓ. ÇÑ¹øÀÇ FULL SCAN¿¡ µÎ¹øÀÇ Á¤·Ä°úÁ¤À¸·Î ¼¼°¡Áö ±âÁØÀ» ¸¸Á·ÇÏµµ·ÏÇÔ.
---±×·¯³ª ÇÑ¹øÀÇ Á¤·Ä°úÁ¤À¸·Î ºÒ°¡ÇÑ ÀÌÀ¯´Â 1¹ø, 2¹ø, 3¹ø Äõ¸®ÀÇ ¸ðµç WINDOW FUNCTIONÀ» ÇÑ¹ø¿¡ Á¤·ÄÇÒ ¼ö ÀÖ´Â ±âÁØÀ» ¼¼¿ì´Â °ÍÀÌ ºÒ°¡´ÉÇÏ±â ¶§¹®ÀÓ.
---¼º°ú : ±âÁ¸º¸´Ù FULL SCANÈ½¼ö ÁÙ¾î¼­ ¸í½ÃÀûÀÎ ½Ã°£ÀÌ °¨¼ÒÇÔ
---´ÜÁ¡ : Á¤·Ä±âÁØÀÌ 3±âÁØ Áß °¡Àå ¸¹Àº 1¹ø ÃâÀç´ÜÀ§±âÁØº¸´Ù ¹è¿­ÀÌ Å­(Á¤·Ä±âÁØÅëÇÕÀÌ ºÒ°¡´ÉÇÏ±â¿¡ µÎ¹øÁ¤·ÄÇØ¼­ µé°íÀÖ°ÔµÊ), ´Ù¸¸ °¢3¹øÀÇ TMEP SAPCE»ç¿ë·® ÇÕº¸´Ù ÀûÀ½.
---°á·Ð : ½Ã°£ÀÌ ¸í½ÃÀûÀ¸·Î ÁÙ¾îµé°í ÀÚ¿øÀ» Á»´õ Àû°Ô ¸Ô´Â ÀÛ¾÷ÀÇ °æ¿ì°¡ ´Ã¾úÁö¸¸, ¾ÆÁ÷ ¸¸Á·½º·´Áö ¸øÇÔ. ¿øÄõ¸®ÀÇ ÀÛ¾÷ÀÌ ½ÇÆÐÇÏ´Â °æ¿ì´Â ¾ø¾úÀ¸³ª ¾ÆÁ÷ ´Ù¸¥ DBÀÛ¾÷À» º´ÇàÇÏ±â¿£ ¹«¸®°¡ ÀÖÀ½.
+--###ìµœì í™” 1ì°¨ì‹œë„
+--ì„¸ì¿¼ë¦¬ ê°ê°ì—ì„œ window functionì„ ì“°ë©´ì„œ ì†ŒíŒ…ì´ ìžˆì—ˆì§€ë§Œ ì›ì¿¼ë¦¬ë¡œ í•©ì¹¨. ê²°ê³¼ì ìœ¼ë¡œ WINDOW SORT OPERATIONì„ 2ë²ˆìœ¼ë¡œ ì¤„ìž„. í•œë²ˆì˜ FULL SCANì— ë‘ë²ˆì˜ ì •ë ¬ê³¼ì •ìœ¼ë¡œ ì„¸ê°€ì§€ ê¸°ì¤€ì„ ë§Œì¡±í•˜ë„ë¡í•¨.
+--ê·¸ëŸ¬ë‚˜ í•œë²ˆì˜ ì •ë ¬ê³¼ì •ìœ¼ë¡œ ë¶ˆê°€í•œ ì´ìœ ëŠ” 1ë²ˆ, 2ë²ˆ, 3ë²ˆ ì¿¼ë¦¬ì˜ ëª¨ë“  WINDOW FUNCTIONì„ í•œë²ˆì— ì •ë ¬í•  ìˆ˜ ìžˆëŠ” ê¸°ì¤€ì„ ì„¸ìš°ëŠ” ê²ƒì´ ë¶ˆê°€ëŠ¥í•˜ê¸° ë•Œë¬¸ìž„.
+--ì„±ê³¼ : ê¸°ì¡´ë³´ë‹¤ FULL SCANíšŸìˆ˜ ì¤„ì–´ì„œ ëª…ì‹œì ì¸ ì‹œê°„ì´ ê°ì†Œí•¨
+--ë‹¨ì  : ì •ë ¬ê¸°ì¤€ì´ 3ê¸°ì¤€ ì¤‘ ê°€ìž¥ ë§Žì€ 1ë²ˆ ì¶œìž¬ë‹¨ìœ„ê¸°ì¤€ë³´ë‹¤ ë°°ì—´ì´ í¼(ì •ë ¬ê¸°ì¤€í†µí•©ì´ ë¶ˆê°€ëŠ¥í•˜ê¸°ì— ë‘ë²ˆì •ë ¬í•´ì„œ ë“¤ê³ ìžˆê²Œë¨), ë‹¤ë§Œ ê°3ë²ˆì˜ TMEP SAPCEì‚¬ìš©ëŸ‰ í•©ë³´ë‹¤ ì ìŒ.
+--ê²°ë¡  : ì‹œê°„ì´ ëª…ì‹œì ìœ¼ë¡œ ì¤„ì–´ë“¤ê³  ìžì›ì„ ì¢€ë” ì ê²Œ ë¨¹ëŠ” ìž‘ì—…ì˜ ê²½ìš°ê°€ ëŠ˜ì—ˆì§€ë§Œ, ì•„ì§ ë§Œì¡±ìŠ¤ëŸ½ì§€ ëª»í•¨. ì›ì¿¼ë¦¬ì˜ ìž‘ì—…ì´ ì‹¤íŒ¨í•˜ëŠ” ê²½ìš°ëŠ” ì—†ì—ˆìœ¼ë‚˜ ì•„ì§ ë‹¤ë¥¸ DBìž‘ì—…ì„ ë³‘í–‰í•˜ê¸°ì—” ë¬´ë¦¬ê°€ ìžˆìŒ.
 
 INSERT /*+ENABLE_PARALLEL_DML APPEND PARALLEL(Z 4) */ INTO CF_SIMU.RSUR_AVG_CEDRT Z
   SELECT /*+FULL(A) PARALLEL(A 4) */ 
@@ -143,21 +143,21 @@ COMMIT;
 
 
 
---###ÃÖÀûÈ­ 2Â÷½Ãµµ
---ÃëÇÕ´ë»ó ·¹ÄÚµå¿¡ ºñÇØ °á°úÁýÇÕ(result set)ÀÌ ±²ÀåÈ÷ ÀÛ´Ù´Â °Í¿¡ Âø¾ÈÇÏ¿© MATERIALIZE ³»ÀçÈùÆ®¸¦ ÀÌ¿ëÇÒ ¼ö ÀÖµµ·Ï GROUPING SETÀ» ÀÌ¿ëÇÔ.
---°á°úÁýÇÕÀÌ ÀÛÀ» ¼ö ÀÖ´Â ÀÌÀ¯´Â Àçº¸Çè µµ¸ÞÀÎÀÇ Æ¯¼º¶§¹®ÀÌ¸ç, ±¸Ã¼ÀûÀ¸·Î´Â ´ÙÀ½°ú °°À½. 
---1. IFRS17 ºÐ±â°á»ê±âÁØ ÇÏ¿¡¼­ µ¿ÀÏÀ¯Çü±×·ìÄÚµå´Â ºÐ±â´ÜÀ§·Î »êÃâµÊ, EX) 2018_1Q, 2018_2Q - µû¶ó¼­ 1³â¿¡ ÃÖ´ë 4°³ÀÇ µ¿Áú¼ºÀÌ ÀÖ´Â cohort(Áý´Ü)¸¸ ¹ß»ýÇÔ.
---2. ÃâÀç´ÜÀ§´Â Àçº¸Çè»ç´ÜÀ§¿Í Å©°Ô ´Ù¸£Áö ¾Ê´Âµ¥, ÄÚ¸®¾È¸®¿Í ÇØ¿ÜÀçº¸Çè»ç±îÁö ´ÙÇØµµ ±â¾÷¼ö ÀÚÃ¼°¡ Àû±â ¶§¹®¿¡ °è¾àÀ¯ÇüÀÌ ¼ö½Ê°³¿¡ ºÒ°úÇÔ.
---3. GOC(group of contract)µµ IFRS17±âÁØÇÏ ÀÌÀÍ, ¼Õ½Ç, ¼Õ½Ç°¡´É¼º Áý´Ü 3°¡Áö ±¸ºÐÀ» ¿øÄ¢À¸·Î ÇÔ.
---À§ÀÇ ÀÌÀ¯·Î °¡Àå ¼¼ºÐÈ­µÈ ±âÁØÀ¸·Î ¹­¾úÀ»¶§Á¶Â÷ ·¹ÄÚµå¼ö°¡ ifrs17µµÀÔ¿¹»ó ½ÃÁ¡ ±âÁØÀ¸·Î 1000°³ Á¤µµ ÀÌ¹Ç·Î(ÇâÈÄ 10³âÃÖ´ë °¡Á¤½Ã¿¡µµ 10000°³°¡ ¾ÈµÉ °ÍÀ¸·Î ¿¹»óÇÏ¿© ¹®Á¦´Â ¾ø¾î º¸ÀÓ),
---1000°³¸¦ ¸Þ¸ð¸®¿¡ ¿Ã·ÁµÎ°í ¸Þ¸ð¸®»ó¿¡¼­ °¢ ÇÊ¿ä´ÜÀ§·Î ´Ù½Ã ±×·ìÇÎÇÏ¿© INSERTÇÔ(inmemory grouping & sorting).
+--###ìµœì í™” 2ì°¨ì‹œë„
+--ì·¨í•©ëŒ€ìƒ ë ˆì½”ë“œì— ë¹„í•´ ê²°ê³¼ì§‘í•©(result set)ì´ êµ‰ìž¥ížˆ ìž‘ë‹¤ëŠ” ê²ƒì— ì°©ì•ˆí•˜ì—¬ MATERIALIZE ë‚´ìž¬ížŒíŠ¸ë¥¼ ì´ìš©í•  ìˆ˜ ìžˆë„ë¡ GROUPING SETì„ ì´ìš©í•¨.
+--ê²°ê³¼ì§‘í•©ì´ ìž‘ì„ ìˆ˜ ìžˆëŠ” ì´ìœ ëŠ” ìž¬ë³´í—˜ ë„ë©”ì¸ì˜ íŠ¹ì„±ë•Œë¬¸ì´ë©°, êµ¬ì²´ì ìœ¼ë¡œëŠ” ë‹¤ìŒê³¼ ê°™ìŒ. 
+--1. IFRS17 ë¶„ê¸°ê²°ì‚°ê¸°ì¤€ í•˜ì—ì„œ ë™ì¼ìœ í˜•ê·¸ë£¹ì½”ë“œëŠ” ë¶„ê¸°ë‹¨ìœ„ë¡œ ì‚°ì¶œë¨, EX) 2018_1Q, 2018_2Q - ë”°ë¼ì„œ 1ë…„ì— ìµœëŒ€ 4ê°œì˜ ë™ì§ˆì„±ì´ ìžˆëŠ” cohort(ì§‘ë‹¨)ë§Œ ë°œìƒí•¨.
+--2. ì¶œìž¬ë‹¨ìœ„ëŠ” ìž¬ë³´í—˜ì‚¬ë‹¨ìœ„ì™€ í¬ê²Œ ë‹¤ë¥´ì§€ ì•ŠëŠ”ë°, ì½”ë¦¬ì•ˆë¦¬ì™€ í•´ì™¸ìž¬ë³´í—˜ì‚¬ê¹Œì§€ ë‹¤í•´ë„ ê¸°ì—…ìˆ˜ ìžì²´ê°€ ì ê¸° ë•Œë¬¸ì— ê³„ì•½ìœ í˜•ì´ ìˆ˜ì‹­ê°œì— ë¶ˆê³¼í•¨.
+--3. GOC(group of contract)ë„ IFRS17ê¸°ì¤€í•˜ ì´ìµ, ì†ì‹¤, ì†ì‹¤ê°€ëŠ¥ì„± ì§‘ë‹¨ 3ê°€ì§€ êµ¬ë¶„ì„ ì›ì¹™ìœ¼ë¡œ í•¨.
+--ìœ„ì˜ ì´ìœ ë¡œ ê°€ìž¥ ì„¸ë¶„í™”ëœ ê¸°ì¤€ìœ¼ë¡œ ë¬¶ì—ˆì„ë•Œì¡°ì°¨ ë ˆì½”ë“œìˆ˜ê°€ ifrs17ë„ìž…ì˜ˆìƒ ì‹œì  ê¸°ì¤€ìœ¼ë¡œ 1000ê°œ ì •ë„ ì´ë¯€ë¡œ(í–¥í›„ 10ë…„ìµœëŒ€ ê°€ì •ì‹œì—ë„ 10000ê°œê°€ ì•ˆë  ê²ƒìœ¼ë¡œ ì˜ˆìƒí•˜ì—¬ ë¬¸ì œëŠ” ì—†ì–´ ë³´ìž„),
+--1000ê°œë¥¼ ë©”ëª¨ë¦¬ì— ì˜¬ë ¤ë‘ê³  ë©”ëª¨ë¦¬ìƒì—ì„œ ê° í•„ìš”ë‹¨ìœ„ë¡œ ë‹¤ì‹œ ê·¸ë£¹í•‘í•˜ì—¬ INSERTí•¨(inmemory grouping & sorting).
 
---¼º°ú : ½Ã°£ È¹±âÀûÀ¸·Î ÁÙ¾î ºü¸¦¶© 1ºÐ¹Ì¸¸ °É¸². ¼ø¼öÈ÷ ÀÐ´Â½Ã°£ÀÌ ÀüÃ¼ ¾÷½Ã°£ÀÇ ´ëºÎºÐÀ¸·Î ÀâÈùµíÇÔ. 
---´ÜÁ¡ : Æ¯Á¤½ÃÁ¡¿¡¼­ in-memory ºÒ°¡ÇÑ°æ¿ì ¼º´ÉÀÌ ±Þ°ÝÈ÷ ¾ÈÁÁ¾ÆÁú ¼ö ÀÖÀ½. ÀûÀýÇÑ ÆÄÆ¼¼Å´×°ú, ÇØ´ç ½ÃÁ¡ÀÇ È¸°è¾÷¹«¿ä°Ç ÀçÈ®ÀÎÇÏ¿© Á¶Ä¡°¡ ÇÊ¿äÇÒ °ÍÀÓ. 
---´Ù¸¸ °è¾àÀÇ À¯Áö°¡ 10³â ¾ÈÆÆÀÌ¹Ç·Î ÃÖ¾ÇÀÇ °æ¿ì¿¡µµ ¹®Á¦°¡ ¾ÈµÉ °¡´É¼ºÀÌ ³ô°í, °ü·Ã³»¿ëÀº °ü°èÀÚ¿¡°Ô °øÀ¯ÇÔ. ÇöÀç±îÁö ±Ø´ÜÀûÀÎÄÉÀÌ½º¿¡µµ ¹®Á¦´Â ¾ø¾úÀ½.
---°á·Ð : ´ÜÀÏ FULLSCAN¿¡ À©µµ¿ìÇÔ¼öÃ³·³ ¹è¿­À» ¸¹ÀÌ¸Ô´Â SORTING¹æ½ÄÀ» ÃëÇÏÁöµµ, ¿©·¯±âÁØÀ» µ¿½Ã¿¡ ÀâÁöµµ ¾Ê¾Æ ¸Þ¸ð¸®¸¦ ³ÑÄ¡Áöµµ ¾Ê±â¿¡ ÀÎ¸Þ¸ð¸®·Î °¡´ÉÇÔ. »óÁ¤ÇÑ ±Ø´ÜÀûÀÎÄÉÀÌ½º¿¡µµ ¹®Á¦´Â ¾ø¾úÀ½.
+--ì„±ê³¼ : ì‹œê°„ íšê¸°ì ìœ¼ë¡œ ì¤„ì–´ ë¹ ë¥¼ë• 1ë¶„ë¯¸ë§Œ ê±¸ë¦¼. ìˆœìˆ˜ížˆ ì½ëŠ”ì‹œê°„ì´ ì „ì²´ ì—…ì‹œê°„ì˜ ëŒ€ë¶€ë¶„ìœ¼ë¡œ ìž¡ížŒë“¯í•¨. 
+--ë‹¨ì  : íŠ¹ì •ì‹œì ì—ì„œ in-memory ë¶ˆê°€í•œê²½ìš° ì„±ëŠ¥ì´ ê¸‰ê²©ížˆ ì•ˆì¢‹ì•„ì§ˆ ìˆ˜ ìžˆìŒ. ì ì ˆí•œ íŒŒí‹°ì…”ë‹ê³¼, í•´ë‹¹ ì‹œì ì˜ íšŒê³„ì—…ë¬´ìš”ê±´ ìž¬í™•ì¸í•˜ì—¬ ì¡°ì¹˜ê°€ í•„ìš”í•  ê²ƒìž„. 
+--ë‹¤ë§Œ ê³„ì•½ì˜ ìœ ì§€ê°€ 10ë…„ ì•ˆíŒŽì´ë¯€ë¡œ ìµœì•…ì˜ ê²½ìš°ì—ë„ ë¬¸ì œê°€ ì•ˆë  ê°€ëŠ¥ì„±ì´ ë†’ê³ , ê´€ë ¨ë‚´ìš©ì€ ê´€ê³„ìžì—ê²Œ ê³µìœ í•¨. í˜„ìž¬ê¹Œì§€ ê·¹ë‹¨ì ì¸ì¼€ì´ìŠ¤ì—ë„ ë¬¸ì œëŠ” ì—†ì—ˆìŒ.
+--ê²°ë¡  : ë‹¨ì¼ FULLSCANì— ìœˆë„ìš°í•¨ìˆ˜ì²˜ëŸ¼ ë°°ì—´ì„ ë§Žì´ë¨¹ëŠ” SORTINGë°©ì‹ì„ ì·¨í•˜ì§€ë„, ì—¬ëŸ¬ê¸°ì¤€ì„ ë™ì‹œì— ìž¡ì§€ë„ ì•Šì•„ ë©”ëª¨ë¦¬ë¥¼ ë„˜ì¹˜ì§€ë„ ì•Šê¸°ì— ì¸ë©”ëª¨ë¦¬ë¡œ ê°€ëŠ¥í•¨. ìƒì •í•œ ê·¹ë‹¨ì ì¸ì¼€ì´ìŠ¤ì—ë„ ë¬¸ì œëŠ” ì—†ì—ˆìŒ.
 
---¶Ç´Ù¸¥ Å×½ºÆ® ½ÃÁ¡À¸·Î ¸¶°¨³â¿ù 201804·Îµµ ÇØº¸°í, ´©Àû°á»ê ½ÃÁ¡ÀÎ 201805ÀÇ 1130 ¹«ºê¸ÕÆ® ±âÁØÀ¸·Îµµ Á¤ÇÕ¼º È®ÀÎÇÔ.
+--ë˜ë‹¤ë¥¸ í…ŒìŠ¤íŠ¸ ì‹œì ìœ¼ë¡œ ë§ˆê°ë…„ì›” 201804ë¡œë„ í•´ë³´ê³ , ëˆ„ì ê²°ì‚° ì‹œì ì¸ 201805ì˜ 1130 ë¬´ë¸Œë¨¼íŠ¸ ê¸°ì¤€ìœ¼ë¡œë„ ì •í•©ì„± í™•ì¸í•¨.
 
 
 --SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
@@ -187,7 +187,7 @@ FROM
         , CASE WHEN A.PRFT_COMS_XC_GRP_COD IS NOT NULL THEN MAX(A.GRP_RN_RKPREM) OVER (PARTITION BY A.IFRS_ACTS_YYMM, A.VALU_YYMM, A.IFRS_WRK_SECD, A.MVMT_SECD, A.DRCTBZ_GOC_TYP_COD, A.DRCTBZ_PF_SECD, A.DRCTBZ_SAME_GRP_TYP_COD)
                WHEN A.PRFT_COMS_XC_GRP_COD IS NULL AND A.RSUR_PF_SECD IS NOT NULL THEN LAST_VALUE(GRP_CED_RKPREM) OVER (ORDER BY A.IFRS_ACTS_YYMM, A.VALU_YYMM, A.IFRS_WRK_SECD, A.MVMT_SECD, A.DRCTBZ_GOC_TYP_COD, A.DRCTBZ_PF_SECD, A.DRCTBZ_SAME_GRP_TYP_COD, A.PRFT_COMS_XC_GRP_COD) END AS GRP_1_P
     FROM 
-        (SELECT /*+ FULL(A) PARALLEL(A 16) */ '201905' AS IFRS_ACTS_YYMM, VALU_YYMM    --¸ñÇ¥·Î ÇÏ°í ÀÖ´Â È¸°è³â¿ùÀ» ¾îÇÃ¸®ÄÉÀÌ¼Ç¿¡¼­ ÀÔ·Â¹ÞÀ½. 
+        (SELECT /*+ FULL(A) PARALLEL(A 16) */ '201905' AS IFRS_ACTS_YYMM, VALU_YYMM    --ëª©í‘œë¡œ í•˜ê³  ìžˆëŠ” íšŒê³„ë…„ì›”ì„ ì–´í”Œë¦¬ì¼€ì´ì…˜ì—ì„œ ìž…ë ¥ë°›ìŒ. 
             , PRFT_COMS_XC_GRP_COD, IFRS_WRK_SECD, MVMT_SECD
             , RSUR_PF_SECD, RSUR_SAME_GRP_TYP_COD, RSUR_GOC_TYP_COD
             , DRCTBZ_GOC_TYP_COD, DRCTBZ_PF_SECD, DRCTBZ_SAME_GRP_TYP_COD
@@ -195,10 +195,10 @@ FROM
             , SUM(CASE WHEN ACCT_PYMT_COD <> 'BASE' THEN A.CED_RKPREM END) 	AS GRP_CED_RKPREM
         FROM CF_SIMU.RSUR_CED_RKPREM A
 
-        --WHERE IFRS_ACTS_YYMM ='201904' AND IFRS_WRK_SECD ='E' AND MVMT_SECD ='1000'    --** test case 1. ºÐ±âÀÇ ½ÃÀÛ(ºÐ±âº°·Î 1, 4, 7, 10¿ù) È¸°è´ë»ó ÃÖÃÊÀÎ½Ä´ë»óÀ¸·Î ¸ÂÃçº½.
+        --WHERE IFRS_ACTS_YYMM ='201904' AND IFRS_WRK_SECD ='E' AND MVMT_SECD ='1000'    --** test case 1. ë¶„ê¸°ì˜ ì‹œìž‘(ë¶„ê¸°ë³„ë¡œ 1, 4, 7, 10ì›”) íšŒê³„ëŒ€ìƒ ìµœì´ˆì¸ì‹ëŒ€ìƒìœ¼ë¡œ ë§žì¶°ë´„.
         WHERE (IFRS_ACTS_YYMM, MVMT_SECD) IN (('201904', '1000'), ('201905', '1000')) AND IFRS_WRK_SECD ='E'     
-        --** test case 2. À§ÀÇ multi in Á¶°ÇÀ¸·Î 4,5¿ù µ¿½ÃÀÔ·ÂÇÏ¿© 5¿ù·Î Ãâ·ÂÇÔ. ifrs17ÀÌ ºÐ±â´©Àû°á»êÀÌ¹Ç·Î 5¿ù 1130¿¡¼­´Â 4¿ùµ¥ÀÌÅÍµµ °°ÀÌ ÀÐ¾î¾ßÇÔ. 
-        --¸¸¾à »êÃâ ³â¿ùÀÌ 6¿ùÀÌ¾ú´Ù¸é 4,5¿ù µ¥ÀÌÅÍ±îÁö ´©ÀûÇØ¼­ IN ('201904', '1000'), ('201905', '1000'), ('201906', '1000'))
+        --** test case 2. ìœ„ì˜ multi in ì¡°ê±´ìœ¼ë¡œ 4,5ì›” ë™ì‹œìž…ë ¥í•˜ì—¬ 5ì›”ë¡œ ì¶œë ¥í•¨. ifrs17ì´ ë¶„ê¸°ëˆ„ì ê²°ì‚°ì´ë¯€ë¡œ 5ì›” 1130ì—ì„œëŠ” 4ì›”ë°ì´í„°ë„ ê°™ì´ ì½ì–´ì•¼í•¨. 
+        --ë§Œì•½ ì‚°ì¶œ ë…„ì›”ì´ 6ì›”ì´ì—ˆë‹¤ë©´ 4,5ì›” ë°ì´í„°ê¹Œì§€ ëˆ„ì í•´ì„œ IN ('201904', '1000'), ('201905', '1000'), ('201906', '1000'))
         GROUP BY GROUPING SETS ((VALU_YYMM, IFRS_WRK_SECD, MVMT_SECD), (VALU_YYMM, IFRS_WRK_SECD, MVMT_SECD, DRCTBZ_GOC_TYP_COD, DRCTBZ_PF_SECD, DRCTBZ_SAME_GRP_TYP_COD)
                                 , (VALU_YYMM, IFRS_WRK_SECD, MVMT_SECD, RSUR_PF_SECD, RSUR_SAME_GRP_TYP_COD, RSUR_GOC_TYP_COD), (VALU_YYMM, PRFT_COMS_XC_GRP_COD, IFRS_WRK_SECD, MVMT_SECD, RSUR_PF_SECD, RSUR_SAME_GRP_TYP_COD, RSUR_GOC_TYP_COD, DRCTBZ_GOC_TYP_COD, DRCTBZ_PF_SECD, DRCTBZ_SAME_GRP_TYP_COD))
         HAVING NVL(RSUR_SAME_GRP_TYP_COD, 0) <> 'BASE') A
@@ -211,7 +211,8 @@ COMMIT;
 
 
 
---query ¹Ù²Û ÀÌÈÄ ÃÖ¼ÒÇÑÀÇ Á¤ÇÕ¼º È®ÀÎ °ËÁõ¿ëÄõ¸®. ´Ü¼øÈ÷ ¸ðµç °ªÀÇ ÀÏÄ¡ÇÔ·Î È®ÀÎÇÔ.
+--###query ë°”ê¾¼ ì´í›„ ìµœì†Œí•œì˜ ì •í•©ì„± í™•ì¸ ê²€ì¦ìš©ì¿¼ë¦¬
+--ë‹¨ìˆœížˆ ëª¨ë“  ê°’ì˜ ì¼ì¹˜í•¨ë¡œ í™•ì¸í•¨.
 SELECT COUNT(A.IFRS_ACTS_YYMM) FROM FMS.RSUR_AVG_CEDRT_TMP A, CF_SIMU.RSUR_AVG_CEDRT B
 WHERE 1=1
 AND A.IFRS_ACTS_YYMM = B.IFRS_ACTS_YYMM
