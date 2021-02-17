@@ -28,23 +28,7 @@ ifrs17 전사시스템 구축과정에서 담당했던 업무 간단 복기, 테
 - 업무흐름속에서 트랜젝션 단위를 조정하여 savepoint 마련, 정합성 오염을 최소화하여 필요 시점별 롤백이 가능하도록 프로세스 구성
 
 
-## 보험사 데이터 표준화, 메타정보 관리
-개인적인 작업기준과 생각을 정리함. 아래의 notion link 참고.
-https://www.notion.so/57ce832b3f174c608be3a29ac93ebf21
-
-
-## 관계형데이터 모델링에 대해서
-고민을 위해 참고한 "관계형 데이터 모델링 노트" 요약. 아래의 notion link 참고.
-https://www.notion.so/be10152a52a44de090c3cd88a951b91d
-
-
-## SQLite 사용에 대해서
-application 이용과 로컬 데이터관리를 위한 서버리스 DB 고민. 아래의 notion link 참고.
-https://www.notion.so/SQLite-d32608beda5144da9d4953e9d3d8d447
-
-
 ## 쿼리 파일별 개요
-
 
 ### CI_Batch.md
 CI담보 지급률 배치작업 쿼리에 대한 내용으로 "CI_Batch_README.md" 파일 참고.
@@ -72,4 +56,18 @@ VFA(Variable Fee Aproach for direct participating contracts)판단 방법에 대
 ### Sensitivity
 서버에 엑셀 import한 데이터를 이용하기 위한 재보험 손익률 민감도 업무목적을 위한 테스트 쿼리. 약식 정합성 확인과정 포함.
 
+
+## 보험사 데이터 표준화, 메타정보 관리
+개인적인 작업기준과 생각을 정리함. 아래의 notion link 참고.
+https://www.notion.so/57ce832b3f174c608be3a29ac93ebf21
+
+
+## 관계형데이터 모델링에 대해서
+고민을 위해 참고한 "관계형 데이터 모델링 노트" 요약. 아래의 notion link 참고.
+https://www.notion.so/be10152a52a44de090c3cd88a951b91d
+
+
+## SQLite 사용에 대해서
+application 이용과 로컬 데이터관리를 위한 서버리스 DB 고민. 아래의 notion link 참고.
+https://www.notion.so/SQLite-d32608beda5144da9d4953e9d3d8d447
 
