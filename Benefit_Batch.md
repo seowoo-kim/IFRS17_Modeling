@@ -1,22 +1,81 @@
+
+IFRS_BFRT_CRT_LST
+
+|순번|속성명|속성영문명|PK|PT|SP|데이터타입|Null여부|Default|설명|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|1|마감년월|CLO_YYMM|1|1||CHAR(6)|N||마감년월|
+|2|기준IFRS청구ID|STD_IFRS_CLM_ID|4|||VARCHAR2(500)|N||기준IFRS청구ID|
+|3|기준사고급부코드|STD_ACCT_PYMT_COD||||VARCHAR2(10)|Y||기준사고급부코드|
+|4|기준위험율산출식비고|STD_RKRT_CALFM_RMK||||VARCHAR2(100)|Y||기준위험율산출식비고|
+|5|기준위험율1ID|STD_RKRT_1_ID||||VARCHAR2(100)|Y||기준위험율1ID|
+|6|기준위험율2ID|STD_RKRT_2_ID||||VARCHAR2(100)|Y||기준위험율2ID|
+|7|기준위험율3ID|STD_RKRT_3_ID||||VARCHAR2(100)|Y||기준위험율3ID|
+|8|기준위험율4ID|STD_RKRT_4_ID||||VARCHAR2(100)|Y||기준위험율4ID|
+|9|기준위험율5ID|STD_RKRT_5_ID||||VARCHAR2(100)|Y||기준위험율5ID|
+|10|기준위험율6ID|STD_RKRT_6_ID||||VARCHAR2(100)|Y||기준위험율6ID|
+|11|기준위험율7ID|STD_RKRT_7_ID||||VARCHAR2(100)|Y||기준위험율7ID|
+|12|기준위험율8ID|STD_RKRT_8_ID||||VARCHAR2(100)|Y||기준위험율8ID|
+|13|기준위험율9ID|STD_RKRT_9_ID||||VARCHAR2(100)|Y||기준위험율9ID|
+|14|온레벨IFRS청구ID|ONLVL_IFRS_CLM_ID||||VARCHAR2(500)|Y||온레벨IFRS청구ID|
+|15|온레벨사고급부코드|ONLVL_ACCT_PYMT_COD||||VARCHAR2(10)|Y||온레벨사고급부코드|
+|16|온레벨위험율산출식비고|ONLVL_RKRT_CALFM_RMK||||VARCHAR2(100)|Y||온레벨위험율산출식비고|
+|17|온레벨위험율1ID|ONLVL_RKRT_1_ID||||VARCHAR2(100)|Y||온레벨위험율1ID|
+|18|온레벨위험율2ID|ONLVL_RKRT_2_ID||||VARCHAR2(100)|Y||온레벨위험율2ID|
+|19|온레벨위험율3ID|ONLVL_RKRT_3_ID||||VARCHAR2(100)|Y||온레벨위험율3ID|
+|20|온레벨위험율4ID|ONLVL_RKRT_4_ID||||VARCHAR2(100)|Y||온레벨위험율4ID|
+|21|온레벨위험율5ID|ONLVL_RKRT_5_ID||||VARCHAR2(100)|Y||온레벨위험율5ID|
+|22|온레벨위험율6ID|ONLVL_RKRT_6_ID||||VARCHAR2(100)|Y||온레벨위험율6ID|
+|23|온레벨위험율7ID|ONLVL_RKRT_7_ID||||VARCHAR2(100)|Y||온레벨위험율7ID|
+|24|온레벨위험율8ID|ONLVL_RKRT_8_ID||||VARCHAR2(100)|Y||온레벨위험율8ID|
+|25|온레벨위험율9ID|ONLVL_RKRT_9_ID||||VARCHAR2(100)|Y||온레벨위험율9ID|
+|26|최종이력여부|LAST_HIS_YN|2|||CHAR(1)|N||최종이력여부|
+|27|삭제여부|DEL_YN|3|||CHAR(1)|N||삭제여부|
+
+FND_RKRT_INF
+
+|순번|속성명|속성영문명|PK|PT|SP|데이터타입|Null여부|Default|설명|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|1|MIG마감연월|MIG_CLO_YYMM|1|1||CHAR(6)|N||MIG마감연월|
+|2|위험율코드|RKRT_COD|4|||VARCHAR2(20)|N||위험율코드|
+|3|성별적용코드|GNDR_APPT_COD|5|||VARCHAR2(10)|N||성별적용코드|
+|4|나이|AGE|6|||"NUMBER(3, 0)"|N||나이|
+|5|위험율|RKRT||||"NUMBER(18, 9)"|N||위험율|
+|6|최종이력여부|LAST_HIS_YN|2|||CHAR(1)|N||최종이력여부|
+|7|삭제여부|DEL_YN|3|||CHAR(1)|N||삭제여부|
+
+BFRT_INF
+
+|순번|속성명|속성영문명|PK|PT|SP|데이터타입|Null여부|Default|설명|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|1|마감연월|CLO_YYMM|1|1||CHAR(6)|N||마감연월|
+|2|IFRS청구ID|IFRS_CLM_ID|2|||VARCHAR2(500)|N||IFRS청구ID|
+|3|성별적용코드|GNDR_APPT_COD|3|||VARCHAR2(10)|N||성별적용코드|
+|4|나이|AGE|4|||"NUMBER(3, 0)"|N||나이|
+|5|위험율값|RKRT_VL||||"NUMBER(38, 19)"|Y||위험율값|
+
 ```sql
 
 SET TIMING ON;
 
 --###데이터 확인
 
-SELECT * FROM MIG.FND_RKRT_INF WHERE LAST_HIS_YN ='1' AND DEL_YN ='0' AND ROWNUM < 100;
---RISK_RATE   --SOURCE2
+--INPUT
 SELECT * FROM CF_SIMU.IFRS_BFRT_CRT_LST WHERE CLO_YYMM ='201812' AND LAST_HIS_YN ='1' AND DEL_YN ='0' AND ROWNUM < 100;
---GEN_BENRATE   --SOURCE1
-SELECT * FROM CF_SIMU.BFRT_INF WHERE ROWNUM < 100;
---BEN_RATE    TARGET
+--IFRS급부율생성내역, 소스 1
+SELECT * FROM MIG.FND_RKRT_INF WHERE LAST_HIS_YN ='1' AND DEL_YN ='0' AND ROWNUM < 100;
+--기초위험율정보, 소스 2
 
+--OUTPUT
+SELECT * FROM CF_SIMU.BFRT_INF WHERE ROWNUM < 100;
+--급부율정보, 타겟
+
+--###참고사항
 
 --비계층형 정보인것만 감안하면 CI담보 Batch 작업쿼리와 사용하는 스키마나 조인과정이 유사함. 
 --unpivot부분, xml query부분은 CI_Batch_README.md나 notion link 확인바람.
 
 
---###Main Run
+--###업무요건
 
 --한 담보코드의 재료는 일반기초통계(기초통계량 STD1~9)와 온레벨기초통계(가정으로 조정한 통계량 ONLVL1~9) 모두 이용해 계산하여, 각각 기본담보코드 온레벨담보코드 두개의 키로 생성된다.
 --이는 담보코드가 처음 생성될때의 가정과 논리로 묶은 기초통계로 구성되고, 이후 경과실적을 보면서 온레벨하여 새로운 계산식과 재료로 변경하여 새로운 코드로도 구성되는 업무프로세스 때문이다.
