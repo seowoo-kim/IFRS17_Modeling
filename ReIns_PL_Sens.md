@@ -5,10 +5,23 @@ SET TIMING ON;
 
 --###데이터 확인
 
-SELECT * FROM CF_SIMU.CED_CVT_COD_BY_RSUR_BZ_PL_RTO_INF WHERE IFRS_ACTS_YYMM ='201812' ORDER BY 1,2,3 AND ROWNUM < 100;          --출재협약코드별재보험사업계획비율정보
-SELECT * FROM CF_SIMU.BZ_PL_RSUR_CED_INF WHERE ROWNUM < 100;                                                                     --사업계획재보험출재정보
-SELECT * FROM CF_SIMU.BZ_PL_EXP_PFMC_INF WHERE ROWNUM < 100;                                                                     --사업계획예상실적정보
+--INPUT
+SELECT * FROM CF_SIMU.BZ_PL_RSUR_CED_INF WHERE ROWNUM < 100;              
+--사업계획재보험출재정보, 소스 1
+SELECT * FROM CF_SIMU.BZ_PL_EXP_PFMC_INF WHERE ROWNUM < 100;              
+--사업계획예상실적정보, 소스2
 
+--OUTPUT
+SELECT * FROM CF_SIMU.CED_CVT_COD_BY_RSUR_BZ_PL_RTO_INF WHERE IFRS_ACTS_YYMM ='201812' ORDER BY 1,2,3 AND ROWNUM < 100;    
+--출재협약코드별재보험사업계획비율정보
+
+
+--###업무요건
+--신계약물량 민감도 "NB_Sens.md"와 업무요건이 유사함. 다만 원수보험사의 계약자 대상의 물량만이 아니라, 원수보험사의 재보험자 대상의 출재 물량에 관한 내용을 포함함.
+--재보험 예상실적 테이블은 분석 집계 기준 동일한 cohort, 채널의 상품군이 첫 판매 시점 이후 향후 경과함에 따라 기간별로 얼마만큼 물량이 들어올지에 대한 시나리오 내용이다.
+--사업계획재보험출재정보 테이블은 분석 대상이 되는 cohort의 기본 현금흐름정보를 담고 있다.
+--두 테이블을 조인하면서 base 현금흐름을 경과시점별로 들어올 물량의 민감도를 곱해서 누적합산하되, 평가시점으로부터 2년치만 사용하도록 고정함.
+--검증case 반드시 살펴서 사용자 수기 시나리오를 받는 것에 대한 정합성유지를 할것.
 
 
 --쿼리 수행 전 실행계획을 확인하기 위한 실행계획 생성과, plan table SELECT
@@ -82,7 +95,8 @@ FROM
             , SUM(CASE WHEN CED_CVT_COD = 'BASE' THEN GSPRE END) AS GSPRE   --재보험의 출재협약이 기본인 경우에만 영업보험료(GSPRE)와 출재위험보험료(CED_RKPREM)을 기준으로 손익률을 계산함.
             , SUM(CASE WHEN CED_CVT_COD <> 'BASE' THEN CED_RKPREM END) AS CED_RKPREM 
         FROM CF_SIMU.BZ_PL_RSUR_CED_INF A WHERE IFRS_ACTS_YYMM = '201812' AND IFRS_WRK_SECD ='E' --사용하려는 현금흐름데이터의 마감년월을 입력받음. 민감도정보와 동일한 마감년월일 필요없음.
-        GROUP BY IFRS_ACTS_YYMM, COL_CHN_DTLCD, PRD_GRP_ALFA, PYCYC_COD, CED_CVT_COD) A) B --위의 A 부분의 INLINE VIEW에 같이 적용해주는 것으로 함. 
+        GROUP BY IFRS_ACTS_YYMM, COL_CHN_DTLCD, PRD_GRP_ALFA, PYCYC_COD, CED_CVT_COD) A
+    ) B --위의 A 부분의 INLINE VIEW에 같이 적용해주는 것으로 함. 
 WHERE B.CED_CVT_COD <> 'BASE' 
     AND A.COL_CHN_DTLCD = B.COL_CHN_DTLCD 
     AND A.PRD_GRP_ALFA = B.PRD_GRP_ALFA 
