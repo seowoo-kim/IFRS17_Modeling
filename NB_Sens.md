@@ -13,7 +13,14 @@ SELECT * FROM CF_SIMU.WRBZ_BZ_PL_SENSTVT_INF;           --소스2-FINAL ONE: 신
 SELECT * FROM CF_SIMU.OUTPUT_T14_RST;                   --그룹별사업계획현금흐름산출내역결과
 
 
---업무 목적에 따라서 소스2의 sample partitioned나 filnal 정보를 사용함.
+--###업무요건
+--민감도정보 테이블은 분석 집계 기준 동일한 cohort, 채널의 상품군이 첫 판매 시점 이후 향후 경과함에 따라 기간별로 얼마만큼 물량이 들어올지에 대한 내용이다.
+--현금흐름산출내역 테이블은 분석 대상이 되는 cohort의 기본 현금흐름정보를 담고 있다.
+--두 테이블을 조인하면서 base 현금흐름을 경과시점별로 들어올 물량의 민감도를 곱해서 기간을 미루면서 누적합산하여
+--해당 집단의 소멸기간까지 전체 현금흐름을 구하는 것이 목표이다.
+
+
+--업무 목적에 따라서 소스2의 사용자별 sample partitioned나 filnal 정보를 사용함.
 --USER TABLE INSERT 예시, WRBZ_BZ_PL_SENSTVT_USER_BY_INF 와 WRBZ_BZ_PL_SENSTVT_INF의 레이아웃은 동일하므로 유저별로 정보를 받아와서 수정하여 민감도 테스트해보는 방식으로 수행함.
 INSERT INTO CF_SIMU.WRBZ_BZ_PL_SENSTVT_USER_BY_INF PARTITION(A) 
 SELECT * 
@@ -22,7 +29,9 @@ WHERE SCNR_NUM =2
 ;
 -- COMMIT;
 
---주의해야할 점은 SYSTEM_PARTITION을 이용한 함수처리와 카티전 조인 이후의 INSERT에서, 당 시스템파티션에 데이터가 없다면 0 ROW INSERTED가 아니라 ORA-000600 ERROR로 비정상종료되므로 주의.
+
+--###주의해야할 점
+--SYSTEM_PARTITION을 이용한 함수처리와 카티전 조인 이후의 INSERT에서, 당 시스템파티션에 데이터가 없다면 0 ROW INSERTED가 아니라 ORA-000600 ERROR로 비정상종료되므로 주의.
 --반드시 사용하는 소스테이블에서 해당 파티션의 데이터가 존재하는지 확인할것, 어플리케이션 내부에는 확인후 경고문구 띄우도록 처리함.
 
 
