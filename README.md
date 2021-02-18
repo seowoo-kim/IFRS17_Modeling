@@ -33,7 +33,6 @@ IFRS17 전사시스템 구축과정에서 담당업무 간단 복기, 테스트 
  
 ## SQL 파일 별 개요
 <br/>
-  
 ### Benefit_Batch.md
 일반(비계층형, 비CI/GI)담보 지급률 배치작업 테스트 쿼리. 아래의 CI_Batch.md의 상세인 notion link에서 담보데이터에 대한 내용 참고.  
 <br/>
