@@ -42,7 +42,7 @@ IFRS17 전사시스템 구축 프로젝트에서 계리 주제영역을 담당�
 <br/>
 
 ### Benefit_Batch.md
-일반(비계층형, 비CI/GI)담보 지급률 배치작업 테스트 쿼리. ***아래의 "CI_Batch.md"의 상세인 notion link에서 담보데이터에 대한 내용 참고. *** 
+일반(비계층형, 비CI/GI)담보 지급률 배치작업 테스트 쿼리. ***아래의 "CI_Batch.md"의 상세인 notion link에서 담보데이터에 대한 내용 참고.***  
 <br/>
 
 ### CI_Batch.md
