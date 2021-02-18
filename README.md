@@ -74,7 +74,7 @@ https://www.notion.so/OLAP-e280b8d084dc48cab4670ffedc0cae77
 VFA(Variable Fee Aproach for direct participating contracts)판단 방법에 대한 개요와 집계 엔터티 통합 후 테스트 쿼리.  
 <br/>
 
-https://github.com/seowoo-kim/IFRS17_Queryscript/blob/main/NB_Sens.md###NB_Sens.md
+[https://github.com/seowoo-kim/IFRS17_Queryscript/blob/main/NB_Sens.md](###NB_Sens.md)
 신계약 물량 민감도 업무목적을 위한 테스트 쿼리. 서버에 엑셀 import한 데이터를 이용하기 위한 형태.  
 <br/>
 
