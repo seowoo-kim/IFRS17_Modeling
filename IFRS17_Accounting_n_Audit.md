@@ -1,18 +1,20 @@
 
 ```sql
 
+--### 업무요건
+--RA(위험조정금액, Risk Adjustment)는 각각의 상계단위 별로(회사에서 정책으로 정한 포트폴리오 단위와 회계단위) 그룹핑을 여러 키단위로 반복하여야 적정한 금액이 산출됨
+--결산기준테이블 IFRS_CF_PLYNO_BY_INF에 들어갈 RA금액을 계산하는 과정에서 이전 결산에서 산출한 상계과정에서의 배분비율을 담는 WHCOM_RA_SHAR_RTO_INF정보도 같이 생성하게됨
+--별도로 산출하게 될시, 결산테이블에 필요할 수백컬럼을 사용하지 않더라도 몇천만~1억조금 넘는 데이터를 반복스캔하고 여러기준 grouping해야하는 부하가 있음.
+--따라서 multi insert방식으로 산출한 값에서 필요한 인스턴스의 값만을 플래그로(RA_IDX) WHCOM_RA_SHAR_RTO_INF에 입력하고,
+--모든(WHEN 1 = 1조건) 결산과정정보는 그대로 IFRS_CF_PLYNO_BY_INF에 입력함.
+
+
 SET TIMING ON;
 
 --쿼리 수행 전 실행계획을 확인하기 위한 실행계획 생성과, plan table SELECT
 --SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY('PLAN_TABLE', NULL, 'OUTLINE'));
 --EXPLAIN PLAN FOR
 
-
---RA(위험조정금액, Risk Adjustment)는 각각의 상계단위 별로(회사에서 정책으로 정한 포트폴리오 단위와 회계단위) 그룹핑을 여러 키단위로 반복하여야 적정한 금액이 산출됨
---결산기준테이블 IFRS_CF_PLYNO_BY_INF에 들어갈 RA금액을 계산하는 과정에서 이전 결산에서 산출한 상계과정에서의 배분비율을 담는 WHCOM_RA_SHAR_RTO_INF정보도 같이 생성하게됨
---별도로 산출하게 될시, 결산테이블에 필요할 수백컬럼을 사용하지 않더라도 몇천만~1억조금 넘는 데이터를 반복스캔하고 여러기준 grouping해야하는 부하가 있음.
---따라서 multi insert방식으로 산출한 값에서 필요한 인스턴스의 값만을 플래그로(RA_IDX) WHCOM_RA_SHAR_RTO_INF에 입력하고,
---모든(WHEN 1 = 1조건) 결산과정정보는 그대로 IFRS_CF_PLYNO_BY_INF에 입력함.
 
 
 INSERT  /*+ ENABLE_PARALLEL_DML APPEND_VALUES PARALLEL(IFRS_CF_PLYNO_BY_INF 16) PARALLEL(WHCOM_RA_SHAR_RTO_INF 16) */ ALL
