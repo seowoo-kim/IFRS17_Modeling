@@ -46,7 +46,7 @@ IFRS17 전사시스템 구축 프로젝트에서 계리 주제영역을 담당�
 <br/>
 
 ### [CI_Batch.md](CI_Batch.md)
-CI(계층형)담보 지급률 배치작업 쿼리에 대한 내용으로 "CI_Batch_README.md" 파일 참고.  
+CI(계층형)담보 지급률 배치작업 쿼리에 대한 내용으로 ["CI_Batch_README.md"](CI_Batch_README.md) 파일 참고.  
 보다 자세하게 스키마와 담보데이터의 계층형모델링 고안 내용은 아래의 notion link 참고.  
 https://www.notion.so/6fd73b778abf42e19aae394e56c71ba9  
 <br/>
@@ -61,11 +61,11 @@ IFRS17기준 모델 산출결과 movement별 결산 base 처리를 위한 쿼리
 <br/>
 
 ### [Meta_Script.md](Meta_Script.md)
-오라클18c기준 테이블, 인덱스, comment, 권한 등의 추출을 위한 내용으로 "Meta_Script_README.md" 파일 참고.  
+오라클18c기준 테이블, 인덱스, comment, 권한 등의 추출을 위한 내용으로 ["Meta_Script_README.md"](Meta_Script_README.md) 파일 참고.  
 <br/>
 
 ### [ReIns_Optimization.md](ReIns_Optimization.md)
-재보험평균출재율 산출업무에 존재하는 여러집계기준과 속성, 그리고 각기의 처리방식의 '통합'을 시도한 내용으로 "ReIns_Optimization_README.md" 파일 참고.  
+재보험평균출재율 산출업무에 존재하는 여러집계기준과 속성, 그리고 각기의 처리방식의 '통합'을 시도한 내용으로 ["ReIns_Optimization_README.md"](ReIns_Optimization_README.md) 파일 참고.  
 보다 자세하게 스키마와 업무목적에 대한 내용은 아래의 notion link참고.  
 https://www.notion.so/OLAP-e280b8d084dc48cab4670ffedc0cae77  
 <br/>
