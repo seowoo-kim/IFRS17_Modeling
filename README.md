@@ -41,7 +41,7 @@ IFRS17신제도와 감독규정에 따라 이전보다 데이터 산출요건이
 IFRS17 전사시스템 구축 프로젝트에서 계리 주제영역을 담당하며 맡은 프로세스 일부 테스트 파일.  
 <br/>
 
-### Benefit_Batch.md
+### [Benefit_Batch.md](Benefit_Batch.md)
 일반(비계층형, 비CI/GI)담보 지급률 배치작업 테스트 쿼리. ***아래의 "CI_Batch.md"의 상세인 notion link에서 담보데이터에 대한 내용 참고.***  
 <br/>
 
@@ -51,34 +51,34 @@ CI(계층형)담보 지급률 배치작업 쿼리에 대한 내용으로 "CI_Bat
 https://www.notion.so/6fd73b778abf42e19aae394e56c71ba9  
 <br/>
 
-### CSM_Calc.md  
+### [CSM_Calc.md](CSM_Calc.md)  
 CSM상각률 계산 내용으로 결산단계(무브먼트)별로 상이한 집계와 처리를 하는 모델을 통합해보고 확인한 테스트 쿼리.    
 <br/>
 
-### IFRS17_Accounting_n_Audit.md
+### [IFRS17_Accounting_n_Audit.md](IFRS17_Accounting_n_Audit.md)
 IFRS17기준 모델 산출결과 movement별 결산 base 처리를 위한 쿼리 테스트.   
 회계산출항목과 통계구분에 따른 항목이 세분화되어 컬럼 개수가 많으므로 상관계수처리와 포트폴리오 단위 그룹핑부분만 참고할 것.  
 <br/>
 
-### Meta_Script.md
+### [Meta_Script.md](Meta_Script.md)
 오라클18c기준 테이블, 인덱스, comment, 권한 등의 추출을 위한 내용으로 "Meta_Script_README.md" 파일 참고.  
 <br/>
 
-### ReIns_Optimization.md
+### [ReIns_Optimization.md](ReIns_Optimization.md)
 재보험평균출재율 산출업무에 존재하는 여러집계기준과 속성, 그리고 각기의 처리방식의 '통합'을 시도한 내용으로 "ReIns_Optimization_README.md" 파일 참고.  
 보다 자세하게 스키마와 업무목적에 대한 내용은 아래의 notion link참고.  
 https://www.notion.so/OLAP-e280b8d084dc48cab4670ffedc0cae77  
 <br/>
 
-### VFA_Judge.md
+### [VFA_Judge.md](VFA_Judge.md)
 VFA(Variable Fee Aproach for direct participating contracts)판단 방법에 대한 개요와 집계 엔터티 통합 후 테스트 쿼리.  
 <br/>
 
-### NB_Sens.md
+### [NB_Sens.md](NB_Sens.md)
 신계약 물량 민감도 업무목적을 위한 테스트 쿼리. 서버에 엑셀 import한 데이터를 이용하기 위한 형태.  
 <br/>
 
-### ReIns_PL_Sens.md
+### [ReIns_PL_Sens.md](ReIns_PL_Sens.md)
 재보험 손익률 민감도 업무목적을 위한 테스트 쿼리. 약식 정합성 확인과정 포함. 서버에 엑셀 import한 데이터를 이용하기 위한 형태.  
 <br/>
 <br/>
