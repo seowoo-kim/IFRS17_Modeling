@@ -70,7 +70,6 @@ SELECT * FROM CF_SIMU.BFRT_INF WHERE ROWNUM < 100;
 --급부율정보, 타겟
 
 --###참고사항
---테이블 구조는 검증 쿼리 아래에 있으므로 참고 바람.
 --비계층형 정보인것만 감안하면 CI담보 Batch 작업쿼리와 사용하는 스키마나 조인과정이 유사함. 
 --unpivot부분, xml query부분은 CI_Batch_README.md나 notion link 확인바람.
 
