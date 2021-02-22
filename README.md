@@ -55,6 +55,10 @@ https://www.notion.so/6fd73b778abf42e19aae394e56c71ba9
 CSM상각률 계산 내용으로 결산단계(무브먼트)별로 상이한 집계와 처리를 하는 모델을 통합해보고 확인한 테스트 쿼리.    
 <br/>
 
+### [DA_practice_1.md](DA_practice_1.md)
+업무 외 DA 연습하면서 남긴 기록. 강의평가 개설 사이트 모델링.
+<br/>
+
 ### [IFRS17_Accounting_n_Audit.md](IFRS17_Accounting_n_Audit.md)
 IFRS17기준 모델 산출결과 movement별 결산 base 처리를 위한 쿼리 테스트.   
 회계산출항목과 통계구분에 따른 ***항목이 세분화되어 컬럼 개수가 많으므로 상관계수처리와 포트폴리오 단위 그룹핑부분을 집중적으로 참고할 것.***  
