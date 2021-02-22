@@ -81,6 +81,10 @@ VFA(Variable Fee Aproach for direct participating contracts)판단 방법에 대
 ### [ReIns_PL_Sens.md](ReIns_PL_Sens.md)
 재보험 손익률 민감도 업무목적을 위한 테스트 쿼리. 약식 정합성 확인과정 포함. 서버에 엑셀 import한 데이터를 이용하기 위한 형태.  
 <br/>
+
+### [leading_block_parallel.txt](leading_block_parallel.txt)
+oracle18c db파라미터, 내재hint 조정으로 실행계획 유도 테스트 과정.
+<br/>
 <br/>
   
 ## 보험사 데이터 표준화, 메타정보 관리
