@@ -7,6 +7,22 @@
 ***빠른 복기와 편의성을 위해 비정규형으로 많이 작성하였으므로,*** 상황에 맞게 모델링을 다시하거나 정규화하고 통합하여 정교화할 것.  
 <br/> 
   
+## 보험사 데이터 표준화, 메타정보 관리
+개인적인 작업기준과 생각을 정리함. 아래의 notion link 참고.  
+https://www.notion.so/57ce832b3f174c608be3a29ac93ebf21  
+<br/>
+
+## 관계형데이터 모델링에 대해서
+고민을 위해 참고한 "관계형 데이터 모델링 노트" 요약. 아래의 notion link 참고.  
+https://www.notion.so/be10152a52a44de090c3cd88a951b91d  
+<br/>
+ 
+## SQLite 사용에 대해서
+application 이용과 로컬 데이터관리를 위한 서버리스 DB 고민. 아래의 notion link 참고.  
+https://www.notion.so/SQLite-d32608beda5144da9d4953e9d3d8d447  
+<br/>
+  
+  
 ## 신 회계제도 IFRS17 데이터 엔지니어링 개요
 <br/>
 
@@ -87,18 +103,4 @@ oracle18c db파라미터, 내재hint 조정으로 실행계획 유도 테스트 
 <br/>
 <br/>
   
-## 보험사 데이터 표준화, 메타정보 관리
-개인적인 작업기준과 생각을 정리함. 아래의 notion link 참고.  
-https://www.notion.so/57ce832b3f174c608be3a29ac93ebf21  
-<br/>
-
-## 관계형데이터 모델링에 대해서
-고민을 위해 참고한 "관계형 데이터 모델링 노트" 요약. 아래의 notion link 참고.  
-https://www.notion.so/be10152a52a44de090c3cd88a951b91d  
-<br/>
- 
-## SQLite 사용에 대해서
-application 이용과 로컬 데이터관리를 위한 서버리스 DB 고민. 아래의 notion link 참고.  
-https://www.notion.so/SQLite-d32608beda5144da9d4953e9d3d8d447  
-<br/>
  
