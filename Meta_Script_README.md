@@ -1,4 +1,4 @@
-# IFRS17_Queryscript
+# IFRS17_Modeling
 
 ## 테이블스크립트추출query.md 상세
 
