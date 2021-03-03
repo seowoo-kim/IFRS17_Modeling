@@ -1,4 +1,4 @@
-# IFRS17_Queryscript
+# IFRS17_Modeling
 
 
 
