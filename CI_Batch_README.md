@@ -1,4 +1,4 @@
-# IFRS17_Queryscript
+# IFRS17_Modeling
 
 ## CI담보율_Batch_query.md 파일 상세
 
